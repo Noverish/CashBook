@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/money_usage_view_inside_border"
+    android:padding="@dimen/money_usage_item_padding">
+
+    <ImageView
+        android:id="@+id/money_usage_item_icon"
+        android:layout_width="@dimen/money_usage_item_icon_size"
+        android:layout_height="@dimen/money_usage_item_icon_size"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="@dimen/money_usage_item_icon_margin"
+        android:background="@drawable/icon_appliance"/>
+
+    <TextView
+        android:layout_width="@dimen/money_usage_item_padding"
+        android:layout_height="@dimen/money_usage_item_padding">
+
+    </TextView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/money_usage_item_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:text="5500"
+            android:textSize="@dimen/money_usage_item_amount_text_size"
+            android:paddingLeft="@dimen/money_usage_item_amount_padding"
+            android:paddingRight="@dimen/money_usage_item_amount_padding"
+            android:paddingStart="@dimen/money_usage_item_amount_padding"
+            android:paddingEnd="@dimen/money_usage_item_amount_padding"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@id/money_usage_item_amount"
+            android:layout_toStartOf="@id/money_usage_item_amount">
+
+            <TextView
+                android:id="@+id/money_usage_item_content"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/money_usage_item_content_text_size"
+                android:text="짜장면"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/money_usage_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/money_usage_item_category_text_size"
+                    android:text="철남"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

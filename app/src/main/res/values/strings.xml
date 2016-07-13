@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">편리한 가계부</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="main_setting_setting">Settings</string>
+    <string name="main_setting_account_manage">계좌 관리</string>
+    <string name="main_setting_card_manage">카드 관리</string>
+    <string name="main_setting_category_manage">분류 관리</string>
+    <string name="main_setting_notification_manage">알림 관리</string>
+    <string name="main_setting_current_property_manage">자산 표시 관리</string>
+    <string name="main_setting_message_manage">문자 메세지 관리</string>
+
+    <string name="add">추가</string>
+    <string name="remove">삭제</string>
+    <string name="cancel">취소</string>
+    <string name="modify">수정</string>
+    <string name="blank">null</string>
+
+    <string name="cashbook_add_date">0000년 00월 00일 0요일</string>
+    <string name="cashbook_add_select_date">날짜선택</string>
+    <string name="cashbook_add_classification">구분</string>
+    <string name="cashbook_add_amount">금액</string>
+    <string name="cashbook_add_usage_content">사용내역</string>
+    <string name="cashbook_add_usage_place">사용장소</string>
+    <string name="cashbook_add_usage_account">사용계좌</string>
+    <string name="cashbook_add_category">분류</string>
+    <string name="cashbook_add_memo">메모</string>
+    <string name="cashbook_add_save_without_change_balance">변경없이저장</string>
+    <string name="cashbook_add_delete_without_change_balance">변경없이삭제</string>
+    <string name="cashbook_add_empty_amount">금액을 입력해 주세요</string>
+    <string name="cashbook_add_empty_content">사용내역을 입력해 주세요</string>
+
+    <string name="category_big">대분류</string>
+    <string name="category_small">소분류</string>
+
+    <string name="account_add_account">통장명</string>
+    <string name="account_add_bank">금융기관</string>
+    <string name="account_add_amount">시작금액</string>
+    <string name="account_add_now_amount">현재금액</string>
+    <string name="account_add_empty_account_name">통장명을 입력해 주세요</string>
+    <string name="account_add_already_exist_account">이미 존재하는 통장입니다</string>
+    <string name="account_add_saved">저장되었습니다</string>
+    <string name="account_add_canceled">취소되었습니다</string>
+    <string name="account_add_modified">수정되었습니다</string>
+    <string name="account_add_removed">삭제되었습니다</string>
+
+    <string name="card_add_card">카드명</string>
+    <string name="card_add_account">출금 통장</string>
+    <string name="card_add_empty_account_name">카드명을 입력해 주세요</string>
+    <string name="card_add_already_exist_account">이미 존재하는 카드입니다</string>
+    <string name="card_add_saved">저장되었습니다</string>
+    <string name="card_add_canceled">취소되었습니다</string>
+    <string name="card_add_modified">수정되었습니다</string>
+    <string name="card_add_removed">삭제되었습니다</string>
+
+    <string name="current_property_layout_living_cost">생  활  비   </string>
+    <string name="current_property_layout_total_property">총  자  산   </string>
+    <string name="current_property_layout_setting">설정</string>
+
+    <string name="account_select_layout_cash">현금</string>
+    <string name="account_select_layout_card">카드</string>
+    <string name="account_select_layout_account">계좌</string>
+
+    <string name="money_usage_list_per_day_income">수입 : </string>
+    <string name="money_usage_list_per_day_expenditure">지출 : </string>
+
+    <string name="money_usage_list_view_prev_month">&lt; 지난 달</string>
+    <string name="money_usage_list_view_next_month">다음 달 &gt;</string>
+    <string name="money_usage_list_view_year">년</string>
+    <string name="money_usage_list_view_month">월</string>
+
+    <string name="money_usage_list_per_month_status_income">월 수입 : </string>
+    <string name="money_usage_list_per_month_status_expense">월 지출 : </string>
+
+    <string name="account_db_manager_already_exist_bank">이미 존재하는 은행입니다</string>
+    <string name="account_db_manager_already_exist_account">이미 존재하는 계좌입니다</string>
+    <string name="account_db_manager_already_exist_card">이미 존재하는 카드입니다</string>
+</resources>

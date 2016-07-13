@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/account_item_vertical_padding"
+    android:paddingBottom="@dimen/account_item_vertical_padding"
+    android:paddingStart="@dimen/account_item_left_padding"
+    android:paddingLeft="@dimen/account_item_left_padding"
+    android:background="@drawable/border">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:id="@+id/account_item_bank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/account_item_content_text_size"
+                android:text="하나" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/account_item_content_text_size"
+                android:text=" - "/>
+
+            <TextView
+                android:id="@+id/account_item_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/account_item_content_text_size"
+                android:text="생활비 통장"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/account_item_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="1000000"
+            android:textSize="@dimen/account_item_amount_text_size"
+            android:paddingLeft="@dimen/account_item_amount_padding"
+            android:paddingRight="@dimen/account_item_amount_padding"
+            android:paddingStart="@dimen/account_item_amount_padding"
+            android:paddingEnd="@dimen/account_item_amount_padding"/>
+
+    </RelativeLayout>
+</LinearLayout>

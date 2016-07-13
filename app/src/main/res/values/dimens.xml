@@ -1,0 +1,59 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">3dp</dimen>
+    <dimen name="activity_vertical_margin">3dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="zero">0dp</dimen>
+
+    <dimen name="money_usage_item_icon_size">35dp</dimen>
+    <dimen name="money_usage_item_icon_margin">3dp</dimen>
+    <dimen name="money_usage_item_amount_padding">30dp</dimen>
+    <dimen name="money_usage_item_content_text_size">15sp</dimen>
+    <dimen name="money_usage_item_category_text_size">12sp</dimen>
+    <dimen name="money_usage_item_amount_text_size">20sp</dimen>
+    <dimen name="money_usage_item_padding">7dp</dimen>
+
+    <dimen name="record_table_row_height">40dp</dimen>
+    <dimen name="record_table_category_row_height">240dp</dimen>
+    <dimen name="record_table_account_row_height">90dp</dimen>
+    <dimen name="record_table_first_column_width">80dp</dimen>
+    <dimen name="record_table_classification_label_side_padding">10dp</dimen>
+    <dimen name="record_table_classification_label_text_size">15sp</dimen>
+    <dimen name="record_table_classification_button_width">90dp</dimen>
+    <dimen name="record_table_card_button_width">200dp</dimen>
+    <dimen name="record_table_card_button_width_text_part">180dp</dimen>
+    <dimen name="record_table_account_button_width">130dp</dimen>
+    <dimen name="record_table_account_button_width_text_part">70dp</dimen>
+
+    <dimen name="category_layout_button_width">90dp</dimen>
+    <dimen name="category_layout_button_text_size">12sp</dimen>
+    <dimen name="category_layout_sub_closed">0dp</dimen>
+    <dimen name="category_layout_sub_opened">60dp</dimen>
+
+    <dimen name="account_item_vertical_padding">15dp</dimen>
+    <dimen name="account_item_left_padding">30dp</dimen>
+    <dimen name="account_item_content_text_size">23sp</dimen>
+    <dimen name="account_item_amount_text_size">20sp</dimen>
+    <dimen name="account_item_amount_padding">15dp</dimen>
+
+    <dimen name="date_time_selector_text_view_padding">5dp</dimen>
+    <dimen name="date_time_selector_text_size">15sp</dimen>
+
+    <dimen name="current_property_layout_text_margin">4dp</dimen>
+
+    <dimen name="money_usage_list_per_month_status_text_size">20sp</dimen>
+    <dimen name="money_usage_list_per_month_status_text_margin">10dp</dimen>
+
+    <dimen name="money_usage_list_per_day_total_status_text_margin">3dp</dimen>
+    <dimen name="money_usage_list_per_day_top_bottom_padding">5dp</dimen>
+    <dimen name="money_usage_list_per_day_date_amount_text_margin">5dp</dimen>
+
+    <dimen name="money_usage_list_view_current_date">25sp</dimen>
+    <dimen name="money_usage_list_view_date_margin">7dp</dimen>
+
+    <dimen name="expense_statistics_pie_graph_height">300dp</dimen>
+</resources>

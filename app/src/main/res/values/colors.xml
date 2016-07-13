@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#000000</color>
+
+
+    <color name="main_color">#F59FA0</color>
+
+    <color name="expense">#ef3d56</color>
+    <color name="income">#51a1f3</color>
+    <color name="transfer">#38495a</color>
+
+    <color name="light_grey">#EEEEEE</color>
+
+    <color name="purple">#9F51F3</color>
+    <color name="yellow">#F3E051</color>
+    <color name="orange">#F3A051</color>
+
+    <color name="clear_white">#FFFFFF</color>
+
+    <color name="pastel_red">#F59FA0</color>
+    <color name="pastel_red_orange">#FEB195</color>
+    <color name="pastel_orange">#FFC887</color>
+    <color name="pastel_yellow">#FAE08B</color>
+    <color name="pastel_yellow_green">#D9D784</color>
+    <color name="pastel_green">#8DD3AE</color>
+    <color name="pastel_green_sky_blue">#72C4BE</color>
+    <color name="pastel_sky_blue">#70B1C7</color>
+    <color name="pastel_blue">#7D9DC3</color>
+    <color name="pastel_blue_purple">#9C95C1</color>
+    <color name="pastel_purple">#B38FB5</color>
+    <color name="pastel_pink">#D995AC</color>
+</resources>

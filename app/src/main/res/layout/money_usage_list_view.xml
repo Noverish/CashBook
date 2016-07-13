@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_color">
+
+        <Button
+            android:id="@+id/money_usage_list_view_prev_month_button"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/clear_white"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/money_usage_list_view_prev_month"/>
+
+        <LinearLayout
+            android:id="@+id/money_usage_list_view_statistics_button"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/money_usage_list_view_date_margin"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/money_usage_list_view_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/clear_white"
+                android:textSize="@dimen/money_usage_list_view_current_date"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/clear_white"
+                android:text="@string/money_usage_list_view_year"
+                android:textSize="@dimen/money_usage_list_view_current_date"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/clear_white"
+                android:text="&#160;"
+                android:textSize="@dimen/money_usage_list_view_current_date"/>
+
+            <TextView
+                android:id="@+id/money_usage_list_view_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/clear_white"
+                android:textSize="@dimen/money_usage_list_view_current_date" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/clear_white"
+                android:text="@string/money_usage_list_view_month"
+                android:textSize="@dimen/money_usage_list_view_current_date"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/money_usage_list_view_next_month_button"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/clear_white"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/money_usage_list_view_next_month"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/money_usage_list_view_content_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+
+</LinearLayout>

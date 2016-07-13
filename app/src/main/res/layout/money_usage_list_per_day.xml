@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/money_usage_list_per_day_top_bottom_padding">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cashbook_list_per_day_day"
+        android:background="#FFFFFF"
+        android:padding="@dimen/money_usage_list_per_day_date_amount_text_margin"
+        android:text="20XX년 XX월 XX일"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:id="@+id/cashbook_list_per_day_content_layout">
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:padding="@dimen/money_usage_list_per_day_date_amount_text_margin"
+        android:gravity="end">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/money_usage_list_per_day_income"
+            android:layout_margin="@dimen/money_usage_list_per_day_total_status_text_margin"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/money_usage_list_per_day_total_amount_income"
+            android:layout_margin="@dimen/money_usage_list_per_day_total_status_text_margin"
+            android:textColor="@color/income"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/money_usage_list_per_day_expenditure"
+            android:layout_margin="@dimen/money_usage_list_per_day_total_status_text_margin"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/money_usage_list_per_day_total_amount_expenditure"
+            android:layout_margin="@dimen/money_usage_list_per_day_total_status_text_margin"
+            android:textColor="@color/expense"/>
+    </LinearLayout>
+</LinearLayout>

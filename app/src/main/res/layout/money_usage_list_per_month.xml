@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/money_usage_list_per_month_status_text_size"
+            android:text="@string/money_usage_list_per_month_status_income"
+            android:layout_margin="@dimen/money_usage_list_per_month_status_text_margin"/>
+
+        <TextView
+            android:id="@+id/money_usage_list_per_month_total_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/money_usage_list_per_month_status_text_size"
+            android:textColor="@color/income"
+            android:layout_marginStart="@dimen/zero"
+            android:layout_marginBottom="@dimen/money_usage_list_per_month_status_text_margin"
+            android:layout_marginTop="@dimen/money_usage_list_per_month_status_text_margin"
+            android:layout_marginEnd="@dimen/money_usage_list_per_month_status_text_margin"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/money_usage_list_per_month_status_text_size"
+            android:text="@string/money_usage_list_per_month_status_expense"
+            android:layout_margin="@dimen/money_usage_list_per_month_status_text_margin"/>
+
+        <TextView
+            android:id="@+id/money_usage_list_per_month_total_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/money_usage_list_per_month_status_text_size"
+            android:textColor="@color/expense"
+            android:layout_marginStart="@dimen/zero"
+            android:layout_marginBottom="@dimen/money_usage_list_per_month_status_text_margin"
+            android:layout_marginTop="@dimen/money_usage_list_per_month_status_text_margin"
+            android:layout_marginEnd="@dimen/money_usage_list_per_month_status_text_margin"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_grey">
+
+        <LinearLayout
+            android:id="@+id/money_usage_list_per_month_content_layout"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
