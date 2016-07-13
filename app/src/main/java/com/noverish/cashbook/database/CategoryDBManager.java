@@ -40,7 +40,7 @@ public class CategoryDBManager {
 
     private final String TAG = getClass().getSimpleName();
 
-    public static final int DEFAULT_CATEOGRY_ID = 0;
+    public static final int DEFAULT_CATEOGRY_ID = 0;//308743  1433117
 
     private CategoryDBManager(Context context) {
         this.context = context;

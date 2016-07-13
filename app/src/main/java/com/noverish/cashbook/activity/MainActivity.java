@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startService(intent);*/
 
         NotificationsReadService.checkNotificationAccess(this);
+
+        Log.e("asdf","Asdf");
     }
 
     private void init() {
@@ -156,6 +158,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if(id == R.id.main_setting_message_manage) {
             Intent intent = new Intent(getApplicationContext(), ExtractSMSActivity.class);
+            startActivityForResult(intent, NULL);
+        } else if(id == R.id.main_content_to_category) {
+            Intent intent = new Intent(getApplicationContext(), ContentToCategoryActivity.class);
             startActivityForResult(intent, NULL);
         }
 

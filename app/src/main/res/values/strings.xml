@@ -11,6 +11,7 @@
     <string name="main_setting_notification_manage">알림 관리</string>
     <string name="main_setting_current_property_manage">자산 표시 관리</string>
     <string name="main_setting_message_manage">문자 메세지 관리</string>
+    <string name="main_content_to_category">내용분류자동전환</string>
 
     <string name="add">추가</string>
     <string name="remove">삭제</string>

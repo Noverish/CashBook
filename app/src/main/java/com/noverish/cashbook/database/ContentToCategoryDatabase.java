@@ -3,18 +3,20 @@ package com.noverish.cashbook.database;
 import android.content.Context;
 import android.util.Log;
 
+import com.noverish.cashbook.other.MoneyUsageItem;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by Noverish on 2016-04-28.
  */
 public class ContentToCategoryDatabase {
-
     private Context context;
     private HashMap<String, Integer> database;
 
@@ -97,6 +99,18 @@ public class ContentToCategoryDatabase {
             Log.e(TAG,"Database is empty");
     }
 
+    public ArrayList<String> getDatabase() {
+        ArrayList<String> ans = new ArrayList<>();
+        CategoryDBManager categoryDBManager = CategoryDBManager.getCategoryManager(context);
+
+        for(String content : database.keySet()) {
+            int categoryId = database.get(content);
+            String[] set = categoryDBManager.getCategoryNameSetFromID(MoneyUsageItem.EXPENDITURE, categoryId);
+            ans.add(content + " : " + set[0] + "-" + set[1]);
+        }
+
+        return ans;
+    }
 
     public void write(String str) {
         try {

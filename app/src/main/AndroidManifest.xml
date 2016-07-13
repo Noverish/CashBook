@@ -48,22 +48,15 @@
         <activity
             android:name=".activity.CashBookAddActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".account.AccountManageActivity" />
-        <activity
-            android:name=".account.AccountAddActivity" />
-        <activity
-            android:name=".activity.CardManageActivity" />
-        <activity
-            android:name=".activity.CardAddActivity" />
-        <activity
-            android:name=".activity.NotificationListenerActivity" />
-        <activity
-            android:name=".activity.SettingActivity" />
-        <activity
-            android:name=".activity.ExtractSMSActivity" />
-        <activity
-            android:name=".activity.ExpenseStatisticsActivity" />
+        <activity android:name=".account.AccountManageActivity" />
+        <activity android:name=".account.AccountAddActivity" />
+        <activity android:name=".activity.CardManageActivity" />
+        <activity android:name=".activity.CardAddActivity" />
+        <activity android:name=".activity.NotificationListenerActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.ExtractSMSActivity" />
+        <activity android:name=".activity.ExpenseStatisticsActivity" />
+        <activity android:name=".activity.ContentToCategoryActivity" />
 
     </application>
 
