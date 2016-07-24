@@ -22,6 +22,9 @@
     <string name="cashbook_add_date">0000년 00월 00일 0요일</string>
     <string name="cashbook_add_select_date">날짜선택</string>
     <string name="cashbook_add_classification">구분</string>
+    <string name="cashbook_add_expense">Expense</string>
+    <string name="cashbook_add_income">Income</string>
+    <string name="cashbook_add_transfer">Transfer</string>
     <string name="cashbook_add_amount">금액</string>
     <string name="cashbook_add_usage_content">사용내역</string>
     <string name="cashbook_add_usage_place">사용장소</string>

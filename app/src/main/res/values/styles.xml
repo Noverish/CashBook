@@ -14,7 +14,9 @@
         <item name="android:textColor">@color/semi_focus</item>
     </style>
 
-
+    <style name="AppButtonStyle" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/semi_focus</item>
+    </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

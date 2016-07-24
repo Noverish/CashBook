@@ -2,6 +2,7 @@ package com.noverish.cashbook.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -259,9 +260,12 @@ public class CashBookAddActivity extends AppCompatActivity {
         expense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expense.setBackgroundResource(R.drawable.expense_selected);
-                income.setBackgroundResource(R.drawable.income);
-                transfer.setBackgroundResource(R.drawable.transfer);
+                expense.setTextColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.pure_white));
+                expense.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.expense));
+                income.setTextColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.not_focus));
+                income.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.background));
+                transfer.setTextColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.not_focus));
+                transfer.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.background));
 
                 classification = MoneyUsageItem.EXPENDITURE;
 
@@ -274,9 +278,12 @@ public class CashBookAddActivity extends AppCompatActivity {
         income.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expense.setBackgroundResource(R.drawable.expense);
-                income.setBackgroundResource(R.drawable.income_selected);
-                transfer.setBackgroundResource(R.drawable.transfer);
+                expense.setTextColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.not_focus));
+                expense.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.background));
+                income.setTextColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.pure_white));
+                income.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.income));
+                transfer.setTextColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.not_focus));
+                transfer.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.background));
 
                 classification = MoneyUsageItem.INCOME;
 
@@ -289,9 +296,12 @@ public class CashBookAddActivity extends AppCompatActivity {
         transfer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expense.setBackgroundResource(R.drawable.expense);
-                income.setBackgroundResource(R.drawable.income);
-                transfer.setBackgroundResource(R.drawable.transfer_selected);
+                expense.setTextColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.not_focus));
+                expense.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.background));
+                income.setTextColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.not_focus));
+                income.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.background));
+                transfer.setTextColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.pure_white));
+                transfer.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.transfer));
 
                 classification = MoneyUsageItem.TRANSFER;
 
