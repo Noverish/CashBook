@@ -294,6 +294,8 @@ public class CashBookAddActivity extends AppCompatActivity {
                 transfer.setBackgroundResource(R.drawable.transfer_selected);
 
                 classification = MoneyUsageItem.TRANSFER;
+
+                categorySelectView.setClassification(classification);
                 categorySelectView.setVisibility(View.INVISIBLE);
                 transferToAccountSpinner.setVisibility(View.VISIBLE);
             }
