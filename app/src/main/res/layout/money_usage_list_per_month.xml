@@ -48,8 +48,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/light_grey">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/money_usage_list_per_month_content_layout"

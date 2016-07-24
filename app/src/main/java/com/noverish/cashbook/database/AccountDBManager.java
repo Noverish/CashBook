@@ -17,8 +17,6 @@ import java.util.HashMap;
 import java.util.NoSuchElementException;
 
 public class AccountDBManager {
-
-
     private Context context;
     private HashMap<Integer, Bank> banks;
     private HashMap<Integer, Account> accounts;

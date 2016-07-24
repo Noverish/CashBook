@@ -8,11 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.noverish.cashbook.R;
 import com.noverish.cashbook.database.AccountDBManager;
@@ -27,6 +27,8 @@ public class CashCardAccountSelectView extends LinearLayout implements View.OnCl
     private LinearLayout contentLayout;
     private ListView cardListView;
     private ListView accountListView;
+
+    private TextView cardSelectButton, accountSelectButton;
 
     private final String TAG = getClass().getSimpleName();
     private final int DEFAULT_ACCOUNT_ID = -1;
@@ -59,11 +61,18 @@ public class CashCardAccountSelectView extends LinearLayout implements View.OnCl
         this.manager = AccountDBManager.getAccountManager(context);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.cash_card_account_select, this, true);
+        inflater.inflate(R.layout.view_payment_select, this, true);
+
+        contentLayout = (LinearLayout) findViewById(R.id.account_select_layout_content_layout);
+
+        cardSelectButton = (TextView) findViewById(R.id.account_select_layout_card_select_button);
+        accountSelectButton = (TextView) findViewById(R.id.account_select_layout_account_select_button);
 
         cardListView = (ListView) findViewById(R.id.account_select_layout_card_select_list);
         accountListView = (ListView) findViewById(R.id.account_select_layout_account_select_list);
-        contentLayout = (LinearLayout) findViewById(R.id.account_select_layout_content_layout);
+
+        LinearLayout statusBar = (LinearLayout) findViewById(R.id.payment_select_status_bar);
+        statusBar.setOnClickListener(this);
 
         setSelectSubTopButton();
         setListViews();
@@ -73,9 +82,9 @@ public class CashCardAccountSelectView extends LinearLayout implements View.OnCl
     public void setData(int ID) {
         nowAccountID = ID;
 
-        Button category001 = (Button) findViewById(R.id.account_category001);
-        Button category002 = (Button) findViewById(R.id.account_category002);
-        Button category003 = (Button) findViewById(R.id.account_category003);
+        TextView category001 = (TextView) findViewById(R.id.account_category001);
+        TextView category002 = (TextView) findViewById(R.id.account_category002);
+        TextView category003 = (TextView) findViewById(R.id.account_category003);
 
         if(ID < 0) {
             Log.e(TAG,"This AccountID is " + ID);
@@ -105,14 +114,9 @@ public class CashCardAccountSelectView extends LinearLayout implements View.OnCl
         } else {
             Log.e(TAG,"Impossible - ID is 0");
         }
-
-        category001.setOnClickListener(this);
-        category002.setOnClickListener(this);
-        category003.setOnClickListener(this);
     }
 
     private void setSelectSubTopButton() {
-        Button cardSelectButton = (Button) findViewById(R.id.account_select_layout_card_select_button);
         cardSelectButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,7 +126,6 @@ public class CashCardAccountSelectView extends LinearLayout implements View.OnCl
             }
         });
 
-        Button accountSelectButton = (Button) findViewById(R.id.account_select_layout_account_select_button);
         accountSelectButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

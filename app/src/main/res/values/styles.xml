@@ -3,10 +3,18 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/main_color</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <!--item name="colorPrimary">@color/main_color</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item-->
+        <item name="colorAccent">@color/main_color</item>
+        <item name="android:textColor">@color/semi_focus</item>
+        <item name="android:background">@color/background</item>
     </style>
+
+    <style name="AppEditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/semi_focus</item>
+    </style>
+
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

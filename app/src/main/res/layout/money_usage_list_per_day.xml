@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cashbook_list_per_day_day"
-        android:background="#FFFFFF"
         android:padding="@dimen/money_usage_list_per_day_date_amount_text_margin"
         android:text="20XX년 XX월 XX일"/>
 
@@ -18,7 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#FFFFFF"
         android:id="@+id/cashbook_list_per_day_content_layout">
 
     </LinearLayout>
@@ -28,7 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#FFFFFF"
         android:padding="@dimen/money_usage_list_per_day_date_amount_text_margin"
         android:gravity="end">
 

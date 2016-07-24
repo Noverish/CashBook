@@ -5,11 +5,30 @@
     <color name="colorAccent">#000000</color>
 
 
-    <color name="main_color">#F59FA0</color>
+    <color name="pure_white">#FFFFFF</color>
+    <color name="pure_dark">#000000</color>
+
+
+    <color name="background">#333333</color>
+    <color name="not_focus">#848484</color>
+    <color name="semi_focus">#d6d6d6</color>
+    <color name="point_color">#2196f3</color>
+
+
+    <color name="main_color">#2196f3</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="sub_color_1">#DB8E8F</color>
+    <color name="sub_color_2">#754C4D</color>
+    <color name="sub_color_3">#362323</color>
+    <color name="sub_color_4">#F75658</color>
 
     <color name="expense">#ef3d56</color>
     <color name="income">#51a1f3</color>
-    <color name="transfer">#38495a</color>
+    <color name="transfer">#72C4BE</color>
+git dif
+    <color name="origin_transfer">#38495a</color>
 
     <color name="light_grey">#EEEEEE</color>
 
@@ -17,7 +36,6 @@
     <color name="yellow">#F3E051</color>
     <color name="orange">#F3A051</color>
 
-    <color name="clear_white">#FFFFFF</color>
 
     <color name="pastel_red">#F59FA0</color>
     <color name="pastel_red_orange">#FEB195</color>

@@ -1,6 +1,7 @@
 package com.noverish.cashbook.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.noverish.cashbook.R;
 import com.noverish.cashbook.database.CategoryDBManager;
@@ -73,6 +75,7 @@ public class CategorySelectView extends LinearLayout {
                 resizeTotalLayout();
             }
         });
+
         topSmallCategoryButton = (Button) findViewById(R.id.small_category_button);
         topSmallCategoryButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -179,9 +182,15 @@ public class CategorySelectView extends LinearLayout {
             button.setTextSize(fontSize);
             button.setText(list.get(i));
             button.setPadding(0, 0, 0, 0);
+            button.setBackgroundColor(Color.WHITE);
             button.setOnClickListener(onClickListener);
 
             layout.addView(button);
+
+            TextView textView = new TextView(context);
+            textView.setTextColor(Color.WHITE);
+            textView.setText("아ㅏㅇ");
+            layout.addView(textView);
         }
     }
 
