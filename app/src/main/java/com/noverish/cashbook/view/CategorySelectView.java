@@ -1,7 +1,6 @@
 package com.noverish.cashbook.view;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -85,9 +84,11 @@ public class CategorySelectView extends LinearLayout {
         });
 
         totalLayout = (RelativeLayout) findViewById(R.id.category_select_total_layout);
-        expenditureCategorySet.bigCategoryLayout = (LinearLayout) findViewById(R.id.category_select_expenditure_big_category);
+        expenditureCategorySet.bigCategoryLayout1 = (LinearLayout) findViewById(R.id.category_select_expenditure_big_category1);
+        expenditureCategorySet.bigCategoryLayout2 = (LinearLayout) findViewById(R.id.category_select_expenditure_big_category2);
         expenditureCategorySet.smallCategoryLayoutSet = (RelativeLayout) findViewById(R.id.category_select_expenditure_small_category);
-        incomeCategorySet.bigCategoryLayout = (LinearLayout) findViewById(R.id.category_select_income_big_category);
+        incomeCategorySet.bigCategoryLayout1 = (LinearLayout) findViewById(R.id.category_select_income_big_category1);
+        incomeCategorySet.bigCategoryLayout2 = (LinearLayout) findViewById(R.id.category_select_income_big_category2);
         incomeCategorySet.smallCategoryLayoutSet = (RelativeLayout) findViewById(R.id.category_select_income_small_category);
 
         fillLayout(MoneyUsageItem.EXPENDITURE, expenditureCategorySet);
@@ -109,23 +110,56 @@ public class CategorySelectView extends LinearLayout {
         if(classification == MoneyUsageItem.EXPENDITURE) {
             nowCategorySet = expenditureCategorySet;
 
-            expenditureCategorySet.bigCategoryLayout.setVisibility(VISIBLE);
-            expenditureCategorySet.bigCategoryLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+            expenditureCategorySet.bigCategoryLayout1.setVisibility(VISIBLE);
+            expenditureCategorySet.bigCategoryLayout1.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+            expenditureCategorySet.bigCategoryLayout2.setVisibility(VISIBLE);
+            expenditureCategorySet.bigCategoryLayout2.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+            expenditureCategorySet.smallCategoryLayoutSet.setVisibility(VISIBLE);
+            expenditureCategorySet.smallCategoryLayoutSet.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
-            incomeCategorySet.bigCategoryLayout.setVisibility(INVISIBLE);
-            incomeCategorySet.bigCategoryLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 0, 1));
+            incomeCategorySet.bigCategoryLayout1.setVisibility(INVISIBLE);
+            incomeCategorySet.bigCategoryLayout1.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
+            incomeCategorySet.bigCategoryLayout2.setVisibility(INVISIBLE);
+            incomeCategorySet.bigCategoryLayout2.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
+            incomeCategorySet.smallCategoryLayoutSet.setVisibility(INVISIBLE);
+            incomeCategorySet.smallCategoryLayoutSet.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
 
             nowClassification = MoneyUsageItem.EXPENDITURE;
         } else if(classification == MoneyUsageItem.INCOME) {
             nowCategorySet = incomeCategorySet;
 
-            expenditureCategorySet.bigCategoryLayout.setVisibility(INVISIBLE);
-            expenditureCategorySet.bigCategoryLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 0, 1));
+            expenditureCategorySet.bigCategoryLayout1.setVisibility(INVISIBLE);
+            expenditureCategorySet.bigCategoryLayout1.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
+            expenditureCategorySet.bigCategoryLayout2.setVisibility(INVISIBLE);
+            expenditureCategorySet.bigCategoryLayout2.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
+            expenditureCategorySet.smallCategoryLayoutSet.setVisibility(INVISIBLE);
+            expenditureCategorySet.smallCategoryLayoutSet.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
 
-            incomeCategorySet.bigCategoryLayout.setVisibility(VISIBLE);
-            incomeCategorySet.bigCategoryLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+            incomeCategorySet.bigCategoryLayout1.setVisibility(VISIBLE);
+            incomeCategorySet.bigCategoryLayout1.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+            incomeCategorySet.bigCategoryLayout2.setVisibility(VISIBLE);
+            incomeCategorySet.bigCategoryLayout2.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+            incomeCategorySet.smallCategoryLayoutSet.setVisibility(VISIBLE);
+            incomeCategorySet.smallCategoryLayoutSet.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
             nowClassification = MoneyUsageItem.INCOME;
+        } else if(classification == MoneyUsageItem.TRANSFER) {
+
+            expenditureCategorySet.bigCategoryLayout1.setVisibility(INVISIBLE);
+            expenditureCategorySet.bigCategoryLayout1.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
+            expenditureCategorySet.bigCategoryLayout2.setVisibility(INVISIBLE);
+            expenditureCategorySet.bigCategoryLayout2.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
+            expenditureCategorySet.smallCategoryLayoutSet.setVisibility(INVISIBLE);
+            expenditureCategorySet.smallCategoryLayoutSet.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
+
+            incomeCategorySet.bigCategoryLayout1.setVisibility(VISIBLE);
+            incomeCategorySet.bigCategoryLayout1.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
+            incomeCategorySet.bigCategoryLayout2.setVisibility(VISIBLE);
+            incomeCategorySet.bigCategoryLayout2.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
+            incomeCategorySet.smallCategoryLayoutSet.setVisibility(VISIBLE);
+            incomeCategorySet.smallCategoryLayoutSet.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
+
+            nowClassification = MoneyUsageItem.TRANSFER;
         }
     }
 
@@ -146,8 +180,8 @@ public class CategorySelectView extends LinearLayout {
             }
         };
 
-        categorySet.bigCategoryLayout.setVisibility(INVISIBLE);
-        fillButtonsTwoLines(categorySet.bigCategoryList, categorySet.bigCategoryLayout, BIG_CATEGORY_BUTTON_FONT_SIZE, bigOnClickListener);
+        categorySet.bigCategoryLayout1.setVisibility(INVISIBLE);
+        categorySet.bigCategoryLayout2.setVisibility(INVISIBLE);
 
         for(int i = 0;i<categorySet.bigCategoryList.size();i++) {
             LinearLayout smallCategoryLayout = new LinearLayout(context);
@@ -155,6 +189,10 @@ public class CategorySelectView extends LinearLayout {
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             smallCategoryLayout.setOrientation(LinearLayout.VERTICAL);
 
+            if(i % 2 == 0)
+                fillButtonsOneLine(categorySet.bigCategoryList.get(i), categorySet.bigCategoryLayout1, BIG_CATEGORY_BUTTON_FONT_SIZE, bigOnClickListener);
+            else
+                fillButtonsOneLine(categorySet.bigCategoryList.get(i), categorySet.bigCategoryLayout2, BIG_CATEGORY_BUTTON_FONT_SIZE, bigOnClickListener);
             categorySet.smallCategoryLayoutSet.addView(smallCategoryLayout);
 
             OnClickListener smallOnClickListener = new OnClickListener() {
@@ -167,12 +205,19 @@ public class CategorySelectView extends LinearLayout {
             };
 
             smallCategoryLayout.setVisibility(INVISIBLE);
-            fillButtons(manager.getAllSmallCategory(classification, i), smallCategoryLayout, SMALL_CATEGORY_BUTTON_FONT_SIZE, smallOnClickListener);
+            fillButtonsOneLine(manager.getAllSmallCategory(classification, i), smallCategoryLayout, SMALL_CATEGORY_BUTTON_FONT_SIZE, smallOnClickListener);
         }
 
     }
 
-    private void fillButtons(ArrayList<String> list, LinearLayout layout, int fontSize, OnClickListener onClickListener) {
+    private void fillButtonsOneLine(String content, LinearLayout layout, int fontSize, OnClickListener onClickListener) {
+        ArrayList<String> list =  new ArrayList<>();
+        list.add(content);
+
+        fillButtonsOneLine(list, layout, fontSize, onClickListener);
+    }
+
+    private void fillButtonsOneLine(ArrayList<String> list, LinearLayout layout, int fontSize, OnClickListener onClickListener) {
         LayoutParams params = new LayoutParams(
                 LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1);
 
@@ -188,35 +233,6 @@ public class CategorySelectView extends LinearLayout {
         }
     }
 
-    private void fillButtonsTwoLines(ArrayList<String> list, LinearLayout layout, int fontSize, OnClickListener onClickListener) {
-        LayoutParams params = new LayoutParams(
-                LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1);
-
-        LinearLayout nowLinearLayout = new LinearLayout(context);;
-
-        for(int i = 0;i<list.size();i++) {
-            if(i % 2 == 0) {
-                nowLinearLayout = new LinearLayout(context);
-                nowLinearLayout.setLayoutParams(params);
-                nowLinearLayout.setOrientation(HORIZONTAL);
-                nowLinearLayout.setBackgroundColor(Color.TRANSPARENT);
-
-                layout.addView(nowLinearLayout);
-            }
-
-            Button button = new Button(context);
-            button.setLayoutParams(params);
-            button.setTextSize(fontSize);
-            button.setText(list.get(i));
-            button.setPadding(0, 0, 0, 0);
-            button.setMinEms(0);
-            button.setMinWidth(0);
-            button.setMinimumWidth(0);
-            button.setOnClickListener(onClickListener);
-
-            nowLinearLayout.addView(button);
-        }
-    }
 
     private void bigCategoryButtonClicked(Button btn) {
         nowBigCategoryName = btn.getText().toString();
@@ -262,7 +278,39 @@ public class CategorySelectView extends LinearLayout {
 
     class CategorySet {
         ArrayList<String> bigCategoryList = new ArrayList<>();
-        LinearLayout bigCategoryLayout;
+        LinearLayout bigCategoryLayout1, bigCategoryLayout2;
         RelativeLayout smallCategoryLayoutSet;
     }
+
+
+
+     /*private void fillButtonsTwoLines(ArrayList<String> list, LinearLayout layout, int fontSize, OnClickListener onClickListener) {
+        LayoutParams params = new LayoutParams(
+                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1);
+
+        LinearLayout nowLinearLayout = new LinearLayout(context);;
+
+        for(int i = 0;i<list.size();i++) {
+            if(i % 2 == 0) {
+                nowLinearLayout = new LinearLayout(context);
+                nowLinearLayout.setLayoutParams(params);
+                nowLinearLayout.setOrientation(HORIZONTAL);
+                nowLinearLayout.setBackgroundColor(Color.TRANSPARENT);
+
+                layout.addView(nowLinearLayout);
+            }
+
+            Button button = new Button(context);
+            button.setLayoutParams(params);
+            button.setTextSize(fontSize);
+            button.setText(list.get(i));
+            button.setPadding(10, 10, 10, 10);
+            button.setMinEms(0);
+            button.setMinWidth(0);
+            button.setMinimumWidth(0);
+            button.setOnClickListener(onClickListener);
+
+            nowLinearLayout.addView(button);
+        }
+    }*/
 }
