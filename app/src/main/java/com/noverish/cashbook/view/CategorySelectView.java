@@ -27,7 +27,7 @@ public class CategorySelectView extends LinearLayout {
     private Context context;
     private CategoryDBManager manager;
 
-    private Button topBigCategoryButton, topSmallCategoryButton;
+    private TextView topBigCategoryButton, topSmallCategoryButton;
     private RelativeLayout totalLayout;
 
     private CategorySet nowCategorySet, expenditureCategorySet, incomeCategorySet;
@@ -68,7 +68,7 @@ public class CategorySelectView extends LinearLayout {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.category_select, this, true);
 
-        topBigCategoryButton = (Button) findViewById(R.id.big_category_button);
+        topBigCategoryButton = (TextView) findViewById(R.id.big_category_button);
         topBigCategoryButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +76,7 @@ public class CategorySelectView extends LinearLayout {
             }
         });
 
-        topSmallCategoryButton = (Button) findViewById(R.id.small_category_button);
+        topSmallCategoryButton = (TextView) findViewById(R.id.small_category_button);
         topSmallCategoryButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,16 +181,10 @@ public class CategorySelectView extends LinearLayout {
             button.setLayoutParams(params);
             button.setTextSize(fontSize);
             button.setText(list.get(i));
-            button.setPadding(0, 0, 0, 0);
-            button.setBackgroundColor(Color.WHITE);
+            button.setPadding(10, 10, 10, 10);
             button.setOnClickListener(onClickListener);
 
             layout.addView(button);
-
-            TextView textView = new TextView(context);
-            textView.setTextColor(Color.WHITE);
-            textView.setText("아ㅏㅇ");
-            layout.addView(textView);
         }
     }
 
@@ -198,13 +192,14 @@ public class CategorySelectView extends LinearLayout {
         LayoutParams params = new LayoutParams(
                 LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1);
 
-        LinearLayout nowLinearLayout = new LinearLayout(context);
+        LinearLayout nowLinearLayout = new LinearLayout(context);;
 
         for(int i = 0;i<list.size();i++) {
             if(i % 2 == 0) {
                 nowLinearLayout = new LinearLayout(context);
                 nowLinearLayout.setLayoutParams(params);
                 nowLinearLayout.setOrientation(HORIZONTAL);
+                nowLinearLayout.setBackgroundColor(Color.TRANSPARENT);
 
                 layout.addView(nowLinearLayout);
             }
