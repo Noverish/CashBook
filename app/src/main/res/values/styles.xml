@@ -6,17 +6,29 @@
         <!--item name="colorPrimary">@color/main_color</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item-->
         <item name="colorAccent">@color/main_color</item>
-        <item name="android:textColor">@color/semi_focus</item>
         <item name="android:background">@color/background</item>
+        <item name="android:textViewStyle">@style/AppTextViewStyle</item>
+        <item name="buttonStyle">@style/AppButtonStyle</item>
+        <item name="android:buttonStyle">@style/AppButtonStyle</item>
+        <item name="editTextStyle">@style/AppEditTextStyle</item>
+
+        <item name="colorPrimaryDark">#FF0000</item>
+        <item name="colorPrimary">@color/primary_material_dark</item>
     </style>
 
     <style name="AppEditTextStyle" parent="Widget.AppCompat.EditText">
-        <item name="android:textColor">@color/semi_focus</item>
+        <item name="android:textColor">@color/pure_white</item>
     </style>
 
     <style name="AppButtonStyle" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:textColor">@color/semi_focus</item>
     </style>
+
+    <style name="AppTextViewStyle" parent="@android:style/TextAppearance.Widget.TextView" >
+        <item name="android:textColor">@color/semi_focus</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
