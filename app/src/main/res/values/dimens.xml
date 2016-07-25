@@ -45,7 +45,7 @@
 
     <dimen name="current_property_layout_text_margin">4dp</dimen>
 
-    <dimen name="money_usage_list_per_month_status_text_size">20sp</dimen>
+    <dimen name="money_usage_list_per_month_status_text_size">15sp</dimen>
     <dimen name="money_usage_list_per_month_status_text_margin">10dp</dimen>
 
     <dimen name="money_usage_list_per_day_total_status_text_margin">3dp</dimen>
