@@ -15,6 +15,7 @@ import com.noverish.cashbook.database.AccountDBManager;
 import com.noverish.cashbook.database.CashBookDBManager;
 import com.noverish.cashbook.database.CategoryDBManager;
 import com.noverish.cashbook.database.ContentToCategoryDatabase;
+import com.noverish.cashbook.gps.GeocodeToAddressClinet;
 import com.noverish.cashbook.gps.GpsInfo;
 import com.noverish.cashbook.other.MoneyUsageItem;
 import com.noverish.cashbook.account.AccountSelectSpinner;
@@ -138,25 +139,29 @@ public class CashBookAddActivity extends AppCompatActivity {
         });
 
 
+        double latitude = 0;
+        double longitude = 0;
+
         GpsInfo gps = new GpsInfo(this);
         // GPS 사용유무 가져오기
         if (gps.isGetLocation()) {
-
-            Log.e("asdf","use");
-
-            double latitude = gps.getLatitude();
-            double longitude = gps.getLongitude();
-
-            Toast.makeText(
-                    getApplicationContext(),
-                    "당신의 위치 - \n위도: " + latitude + "\n경도: " + longitude,
-                    Toast.LENGTH_LONG).show();
+            latitude = gps.getLatitude();
+            longitude = gps.getLongitude();
 
             Log.e("asdf",latitude + " " + longitude);
         } else {
             Log.e("asdf","not use");
             // GPS 를 사용할수 없으므로
             gps.showSettingsAlert();
+        }
+
+        try {
+            GeocodeToAddressClinet.Address address = GeocodeToAddressClinet.getInstance().geoCodeToAddress(latitude, longitude);
+
+            Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
+        } catch (GeocodeToAddressClinet.ConvertException ex) {
+            Log.e("json",ex.json);
+            Toast.makeText(this, ex.json, Toast.LENGTH_SHORT).show();
         }
     }
 
