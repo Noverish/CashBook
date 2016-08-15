@@ -106,8 +106,8 @@ public class GeocodeToAddressClinet {
     }
 
     public class Address {
-        private String newAddress;
-        private String oldAddress;
+        private String newAddress = null;
+        private String oldAddress = null;
         private double longitude;
         private double latitude;
 

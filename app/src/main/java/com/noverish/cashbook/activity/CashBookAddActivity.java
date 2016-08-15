@@ -8,9 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.noverish.cashbook.R;
+import com.noverish.cashbook.account.AccountSelectSpinner;
 import com.noverish.cashbook.database.AccountDBManager;
 import com.noverish.cashbook.database.CashBookDBManager;
 import com.noverish.cashbook.database.CategoryDBManager;
@@ -18,7 +20,6 @@ import com.noverish.cashbook.database.ContentToCategoryDatabase;
 import com.noverish.cashbook.gps.GeocodeToAddressClinet;
 import com.noverish.cashbook.gps.GpsInfo;
 import com.noverish.cashbook.other.MoneyUsageItem;
-import com.noverish.cashbook.account.AccountSelectSpinner;
 import com.noverish.cashbook.view.CashCardAccountSelectView;
 import com.noverish.cashbook.view.CategorySelectView;
 import com.noverish.cashbook.view.DateTimeSelector;
@@ -31,10 +32,12 @@ public class CashBookAddActivity extends AppCompatActivity {
     private Button expense;
     private Button income;
     private Button transfer;
+    private TextView nowAddressButton;
     private EditText amountString;
     private EditText content;
     private EditText place;
     private EditText memo;
+    private TextView nowAddressTextView;
 
     private DateTimeSelector dateTimeSelector = null;
     private CashCardAccountSelectView cashCardAccountSelectView = null;
@@ -63,11 +66,13 @@ public class CashBookAddActivity extends AppCompatActivity {
         expense = (Button) findViewById(R.id.cashbook_add_button_expenditure);
         income = (Button) findViewById(R.id.cashbook_add_button_income);
         transfer = (Button) findViewById(R.id.cashbook_add_button_transfer);
+        nowAddressButton = (TextView) findViewById(R.id.cashbook_now_place_button);
 
         amountString = (EditText) findViewById(R.id.cashbook_add_amount);
         content = (EditText) findViewById(R.id.cashbook_add_content);
         place = (EditText) findViewById(R.id.cashbook_add_place);
         memo = (EditText) findViewById(R.id.cashbook_add_memo);
+        nowAddressTextView = (TextView) findViewById(R.id.cashbook_now_place_text_view);
 
         dateTimeSelector = (DateTimeSelector) findViewById(R.id.cashbook_add_date_time_selector);
         cashCardAccountSelectView = (CashCardAccountSelectView) findViewById(R.id.cashbook_add_account_select);
@@ -138,31 +143,38 @@ public class CashBookAddActivity extends AppCompatActivity {
             }
         });
 
+        nowAddressButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double latitude = 0;
+                double longitude = 0;
 
-        double latitude = 0;
-        double longitude = 0;
+                GpsInfo gps = new GpsInfo(CashBookAddActivity.this);
+                // GPS 사용유무 가져오기
+                if (gps.isGetLocation()) {
+                    latitude = gps.getLatitude();
+                    longitude = gps.getLongitude();
+                } else {
+                    Toast.makeText(CashBookAddActivity.this, "GPS를 사용 할 수 없습니다", Toast.LENGTH_SHORT);
+                    // GPS 를 사용할수 없으므로
+                    gps.showSettingsAlert();
+                }
 
-        GpsInfo gps = new GpsInfo(this);
-        // GPS 사용유무 가져오기
-        if (gps.isGetLocation()) {
-            latitude = gps.getLatitude();
-            longitude = gps.getLongitude();
+                try {
+                    GeocodeToAddressClinet.Address address = GeocodeToAddressClinet.getInstance().geoCodeToAddress(latitude, longitude);
 
-            Log.e("asdf",latitude + " " + longitude);
-        } else {
-            Log.e("asdf","not use");
-            // GPS 를 사용할수 없으므로
-            gps.showSettingsAlert();
-        }
-
-        try {
-            GeocodeToAddressClinet.Address address = GeocodeToAddressClinet.getInstance().geoCodeToAddress(latitude, longitude);
-
-            Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
-        } catch (GeocodeToAddressClinet.ConvertException ex) {
-            Log.e("json",ex.json);
-            Toast.makeText(this, ex.json, Toast.LENGTH_SHORT).show();
-        }
+                    if (address.getNewAddress() != null)
+                        nowAddressTextView.setText(address.getNewAddress());
+                    else if (address.getOldAddress() != null)
+                        nowAddressTextView.setText(address.getOldAddress());
+                    else
+                        nowAddressTextView.setText("위도 : " + address.getLatitude() + ", 경도 : " + address.getLongitude());
+                } catch (GeocodeToAddressClinet.ConvertException ex) {
+                    Log.e("json", ex.json);
+                    Toast.makeText(CashBookAddActivity.this, ex.json, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private class saveOnClickListener implements View.OnClickListener {
