@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class CashBookAddActivity extends AppCompatActivity {
     private EditText place;
     private EditText memo;
     private TextView nowAddressTextView;
+    private TextView chargeTextView;
 
     private DateTimeSelector dateTimeSelector = null;
     private CashCardAccountSelectView cashCardAccountSelectView = null;
@@ -73,6 +75,7 @@ public class CashBookAddActivity extends AppCompatActivity {
         place = (EditText) findViewById(R.id.cashbook_add_place);
         memo = (EditText) findViewById(R.id.cashbook_add_memo);
         nowAddressTextView = (TextView) findViewById(R.id.cashbook_now_place_text_view);
+        chargeTextView = (TextView) findViewById(R.id.cashbook_add_charge);
 
         dateTimeSelector = (DateTimeSelector) findViewById(R.id.cashbook_add_date_time_selector);
         cashCardAccountSelectView = (CashCardAccountSelectView) findViewById(R.id.cashbook_add_account_select);
@@ -163,9 +166,9 @@ public class CashBookAddActivity extends AppCompatActivity {
                 try {
                     GeocodeToAddressClinet.Address address = GeocodeToAddressClinet.getInstance().geoCodeToAddress(latitude, longitude);
 
-                    if (address.getNewAddress() != null)
+                    if (address.getNewAddress() != null && !address.getNewAddress().equals(""))
                         nowAddressTextView.setText(address.getNewAddress());
-                    else if (address.getOldAddress() != null)
+                    else if (address.getOldAddress() != null && !address.getOldAddress().equals(""))
                         nowAddressTextView.setText(address.getOldAddress());
                     else
                         nowAddressTextView.setText("위도 : " + address.getLatitude() + ", 경도 : " + address.getLongitude());
@@ -306,6 +309,8 @@ public class CashBookAddActivity extends AppCompatActivity {
                 income.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.background));
                 transfer.setTextColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.not_focus));
                 transfer.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.background));
+                LinearLayout layout = (LinearLayout) chargeTextView.getParent();
+                layout.setVisibility(View.GONE);
 
                 classification = MoneyUsageItem.EXPENDITURE;
 
@@ -324,6 +329,8 @@ public class CashBookAddActivity extends AppCompatActivity {
                 income.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.income));
                 transfer.setTextColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.not_focus));
                 transfer.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.background));
+                LinearLayout layout = (LinearLayout) chargeTextView.getParent();
+                layout.setVisibility(View.GONE);
 
                 classification = MoneyUsageItem.INCOME;
 
@@ -342,6 +349,8 @@ public class CashBookAddActivity extends AppCompatActivity {
                 income.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.background));
                 transfer.setTextColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.pure_white));
                 transfer.setBackgroundColor(ContextCompat.getColor(CashBookAddActivity.this, R.color.transfer));
+                LinearLayout layout = (LinearLayout) chargeTextView.getParent();
+                layout.setVisibility(View.VISIBLE);
 
                 classification = MoneyUsageItem.TRANSFER;
 
