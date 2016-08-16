@@ -3,19 +3,15 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <!--item name="colorPrimary">@color/main_color</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item-->
+        <item name="colorPrimary">@color/main_color</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/main_color</item>
         <item name="android:background">@color/transparent</item>
-        <!--<item name="android:background">@color/background</item>-->
         <item name="android:windowBackground">@color/background</item>
         <item name="android:textViewStyle">@style/AppTextViewStyle</item>
         <item name="buttonStyle">@style/AppButtonStyle</item>
         <item name="android:buttonStyle">@style/AppButtonStyle</item>
         <item name="editTextStyle">@style/AppEditTextStyle</item>
-
-        <item name="colorPrimaryDark">@color/primary_material_dark</item>
-        <item name="colorPrimary">@color/primary_material_dark</item>
     </style>
 
     <style name="AppEditTextStyle" parent="Widget.AppCompat.EditText">
@@ -31,40 +27,8 @@
         <item name="android:background">@color/transparent</item>
     </style>
 
-    <style name="PickerStyle" parent="Theme.AppCompat.Light.Dialog">
-        <!--<item name="android:colorBackground">#00FFFF</item>
-        <item name="android:textColor">#FFFF00</item>
-        <item name="android:textColorSecondary">#0000FF</item>
-        <item name="android:textColorPrimary">#a43d5e</item>
-
-
-
-        <item name="android:background">@color/transparent</item>
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowTitleStyle">@style/RtlOverlay.DialogWindowTitle.AppCompat</item>
-        <item name="android:windowTitleBackgroundStyle">@style/Base.DialogWindowTitleBackground.AppCompat</item>
-        <item name="android:windowBackground">@color/transparent</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowAnimationStyle">@style/Animation.AppCompat.Dialog</item>
-        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>-->
-    </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
-        <item name="android:colorBackground">#FFFF00</item>
-        <item name="android:textColor">#0000FF</item>
-
-    </style>
-
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
-        <item name="android:colorBackground">#00FF00</item>
-        <item name="android:textColor">#00FFFF</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:textColor">@color/semi_focus</item>
     </style>
-
 </resources>
