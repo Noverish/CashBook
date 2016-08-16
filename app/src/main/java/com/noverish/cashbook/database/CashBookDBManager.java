@@ -61,7 +61,6 @@ public class CashBookDBManager {
                 MEMO_COLUMN + " text);");
 
         //printAllDatabase();
-
     }
 
     public int insert(MoneyUsageItem item, boolean changeBalance) {
@@ -79,6 +78,7 @@ public class CashBookDBManager {
         if(changeBalance) {
             MoneyUsageItem item = getItem(id);
             item.setAmount(-item.getAmount());
+            item.setTransferFee(-item.getTransferFee());
             realizeMoneyUsageItem(item);
             realizeMoneyUsageItem(changeItem);
         }
@@ -92,6 +92,7 @@ public class CashBookDBManager {
         if(changeBalance) {
             MoneyUsageItem item = getItem(id);
             item.setAmount(-item.getAmount());
+            item.setTransferFee(-item.getTransferFee());
             realizeMoneyUsageItem(item);
         }
 
@@ -107,6 +108,7 @@ public class CashBookDBManager {
         if(item.getClassification() == MoneyUsageItem.TRANSFER) {
             int fromAccountID, toAccountID = item.getCategoryIdOrToAccountID();
             long amount = item.getAmount();
+            int fee = item.getTransferFee();
 
             if(item.getAccountId() < 0)
                 fromAccountID = -item.getAccountId();
@@ -115,10 +117,11 @@ public class CashBookDBManager {
                 fromAccountID = accountDBManager.getAccountID(tmp[0], tmp[1]);
             }
 
+            accountDBManager.addBalance(fromAccountID, -fee);
             accountDBManager.addBalance(fromAccountID, -amount);
             accountDBManager.addBalance(toAccountID, amount);
 
-            Log.e(TAG, "FromAccountID is " + fromAccountID + ", amount is " + -amount);
+            Log.e(TAG, "FromAccountID is " + fromAccountID + ", amount is " + -amount + ", fee is " + fee);
             Log.e(TAG, "ToAccountID is " + toAccountID + ", amount is " + amount);
         } else if(item.getClassification() == MoneyUsageItem.EXPENDITURE) {
             int accountID;
@@ -184,7 +187,7 @@ public class CashBookDBManager {
 
         if(cursor.getCount() == 0) {
             cursor.close();
-            Log.e("getItem","There is no " + id + "in CashBookDatabase!");
+            Log.e("getItem","There is no " + id + " in CashBookDatabase!");
             printAllDatabase();
             return null;
         }

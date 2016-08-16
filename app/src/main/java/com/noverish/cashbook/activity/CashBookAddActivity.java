@@ -34,10 +34,11 @@ public class CashBookAddActivity extends AppCompatActivity {
     private Button income;
     private Button transfer;
     private TextView nowAddressButton;
-    private EditText amountString;
-    private EditText content;
-    private EditText place;
-    private EditText memo;
+    private EditText amountEditText;
+    private EditText feeEditText;
+    private EditText contentEditText;
+    private EditText placeEditText;
+    private EditText memoEditText;
     private TextView nowAddressTextView;
     private TextView chargeTextView;
 
@@ -70,12 +71,13 @@ public class CashBookAddActivity extends AppCompatActivity {
         transfer = (Button) findViewById(R.id.cashbook_add_button_transfer);
         nowAddressButton = (TextView) findViewById(R.id.cashbook_now_place_button);
 
-        amountString = (EditText) findViewById(R.id.cashbook_add_amount);
-        content = (EditText) findViewById(R.id.cashbook_add_content);
-        place = (EditText) findViewById(R.id.cashbook_add_place);
-        memo = (EditText) findViewById(R.id.cashbook_add_memo);
+        amountEditText = (EditText) findViewById(R.id.cashbook_add_amount);
+        feeEditText = (EditText) findViewById(R.id.cashbook_add_fee);
+        contentEditText = (EditText) findViewById(R.id.cashbook_add_content);
+        placeEditText = (EditText) findViewById(R.id.cashbook_add_place);
+        memoEditText = (EditText) findViewById(R.id.cashbook_add_memo);
         nowAddressTextView = (TextView) findViewById(R.id.cashbook_now_place_text_view);
-        chargeTextView = (TextView) findViewById(R.id.cashbook_add_charge);
+        chargeTextView = (TextView) findViewById(R.id.cashbook_add_fee);
 
         dateTimeSelector = (DateTimeSelector) findViewById(R.id.cashbook_add_date_time_selector);
         cashCardAccountSelectView = (CashCardAccountSelectView) findViewById(R.id.cashbook_add_account_select);
@@ -132,11 +134,11 @@ public class CashBookAddActivity extends AppCompatActivity {
             deleteWithoutChangeButton.setVisibility(View.INVISIBLE);
         }
 
-        content.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        contentEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    String usageContent = content.getText().toString();
+                    String usageContent = contentEditText.getText().toString();
 
                     int categoryId = ContentToCategoryDatabase.getContentToCategoryDatabase(context).getCategoryIDFromContent(usageContent);
                     categorySelectView.setData(classification, categoryId);
@@ -189,20 +191,21 @@ public class CashBookAddActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            if (amountString.getText().toString().equals("")) {
+            if (amountEditText.getText().toString().equals("")) {
                 Toast.makeText(CashBookAddActivity.this, getResources().getString(R.string.cashbook_add_empty_amount), Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if (content.getText().toString().equals("")) {
+            if (contentEditText.getText().toString().equals("")) {
                 Toast.makeText(CashBookAddActivity.this, getResources().getString(R.string.cashbook_add_empty_content), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             long date = dateTimeSelector.getTimeInMillis();
-            long amount = Integer.parseInt(amountString.getText().toString());
-            String usageContent = content.getText().toString();
-            String usagePlace = place.getText().toString();
+            long amount = Integer.parseInt(amountEditText.getText().toString());
+            int fee = (feeEditText.getText().toString().equals("")) ? 0 : Integer.parseInt(feeEditText.getText().toString());
+            String usageContent = contentEditText.getText().toString();
+            String usagePlace = placeEditText.getText().toString();
             int accountId = cashCardAccountSelectView.getNowAccountID();
 
             int categoryId;
@@ -211,9 +214,9 @@ public class CashBookAddActivity extends AppCompatActivity {
             else
                 categoryId = categorySelectView.getNowCategoryID();
 
-            String usageMemo = memo.getText().toString();
+            String usageMemo = memoEditText.getText().toString();
 
-            MoneyUsageItem moneyUsageItem = new MoneyUsageItem(date, classification, amount, usageContent, usagePlace, accountId, categoryId, usageMemo, 0, "");
+            MoneyUsageItem moneyUsageItem = new MoneyUsageItem(date, classification, amount, usageContent, usagePlace, accountId, categoryId, usageMemo, fee, "");
 
             manager.insert(moneyUsageItem, changeBalance);
             ContentToCategoryDatabase.getContentToCategoryDatabase(context).putContentCategory(usageContent, categoryId);
@@ -235,21 +238,22 @@ public class CashBookAddActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            if (amountString.getText().toString().equals("")) {
+            if (amountEditText.getText().toString().equals("")) {
                 Toast.makeText(CashBookAddActivity.this, getResources().getString(R.string.cashbook_add_empty_amount), Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if (content.getText().toString().equals("")) {
+            if (contentEditText.getText().toString().equals("")) {
                 Toast.makeText(CashBookAddActivity.this, getResources().getString(R.string.cashbook_add_empty_content), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             long date = dateTimeSelector.getTimeInMillis();
-            long amount = Integer.parseInt(amountString.getText().toString());
-            String usageContent = content.getText().toString();
-            String usagePlace = place.getText().toString();
-            String usageMemo = memo.getText().toString();
+            long amount = Integer.parseInt(amountEditText.getText().toString());
+            int fee = (feeEditText.getText().toString().equals("")) ? 0 : Integer.parseInt(feeEditText.getText().toString());
+            String usageContent = contentEditText.getText().toString();
+            String usagePlace = placeEditText.getText().toString();
+            String usageMemo = memoEditText.getText().toString();
             int accountId = cashCardAccountSelectView.getNowAccountID();
             int categoryId;
 
@@ -258,7 +262,7 @@ public class CashBookAddActivity extends AppCompatActivity {
             else
                 categoryId = categorySelectView.getNowCategoryID();
 
-            MoneyUsageItem moneyUsageItem = new MoneyUsageItem(date, classification, amount, usageContent, usagePlace, accountId, categoryId, usageMemo, 0, "");
+            MoneyUsageItem moneyUsageItem = new MoneyUsageItem(date, classification, amount, usageContent, usagePlace, accountId, categoryId, usageMemo, fee, "");
 
             manager.modify(id, moneyUsageItem, changeBalance);
             ContentToCategoryDatabase.getContentToCategoryDatabase(context).putContentCategory(usageContent, categoryId);
@@ -269,16 +273,14 @@ public class CashBookAddActivity extends AppCompatActivity {
     }
 
     private void setData(MoneyUsageItem item) {
-        Log.e(TAG, item.toString());
-
-
-
         dateTimeSelector.setTimeInMillis(item.getDate());
         if(item.getAmount() != 0)
-            amountString.setText(String.valueOf(item.getAmount()));
-        content.setText(item.getContent());
-        place.setText(item.getPlace());
-        memo.setText(item.getMemo());
+            amountEditText.setText(String.valueOf(item.getAmount()));
+        if(item.getTransferFee() != 0)
+            feeEditText.setText(String.valueOf(item.getTransferFee()));
+        contentEditText.setText(item.getContent());
+        placeEditText.setText(item.getPlace());
+        memoEditText.setText(item.getMemo());
         categorySelectView.setData(classification, item.getCategoryIdOrToAccountID());
 
         cashCardAccountSelectView.setData(item.getAccountId());

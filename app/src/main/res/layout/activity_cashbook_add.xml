@@ -144,7 +144,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/cashbook_add_charge"
+                    android:id="@+id/cashbook_add_fee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
