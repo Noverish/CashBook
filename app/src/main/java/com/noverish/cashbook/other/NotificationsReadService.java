@@ -60,33 +60,11 @@ public class NotificationsReadService extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-/*
-        Log.e(TAG, "**********onNotificationPosted**********");
-        String[] strs = statusBarNotificationToString(sbn).split("\n");
-        for(String str : strs)
-            Log.e(TAG,str);*/
-
-//        Toast.makeText(this, sbn.getNotification().extras.getString("android.text"), Toast.LENGTH_SHORT).show();
-
-        //makeNotification(strs[4],strs[8], strs[3]);
-
         String title = (String) sbn.getNotification().extras.get("android.title");
 
         if(title != null && title.equals("KEB 하나은행")) {
             insertStatusBarToCashBookDB(sbn);
         }
-/*
-        NotificationDBManager dbManager = NotificationDBManager.getNotificationDBManager(this);
-
-        String text = sbn.getNotification().extras.getString("android.text");
-
-        NotificationItem item = new NotificationItem(title, 0, 0, text, 0, 0, "");
-        dbManager.insert(item);
-*/
-/*
-        Intent i = new Intent();
-        i.putExtra("text",sbn.getNotification().extras.getString("android.text"));
-        sendBroadcast(i);*/
     }
 
     @Override
@@ -188,15 +166,6 @@ public class NotificationsReadService extends NotificationListenerService {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getIntExtra("command",0) == NotificationListenerActivity.REQUEST_CODE_NOTIFICATION_LIST) {
-/*
-                try {
-                    NotificationsReadService.this.getActiveNotifications();
-                } catch (NullPointerException np) {
-                    Intent intentToSetting = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-                    startActivity(intentToSetting);
-                    return;
-                }
-*/
                 String tmp = "===== Notification List ====";
 
                 for (StatusBarNotification sbn : NotificationsReadService.this.getActiveNotifications())
@@ -208,20 +177,6 @@ public class NotificationsReadService extends NotificationListenerService {
                 i.putExtra("notification_event", tmp);
                 sendBroadcast(i);
             }
-            /*else if(intent.getIntExtra("command",0) == 4321) {
-                for (StatusBarNotification sbn : NotificationsReadService.this.getActiveNotifications()) {
-                    String title = (String) sbn.getNotification().extras.get("android.title");
-
-                    if (title != null && title.equals("KEB 하나은행")) {
-                        NotificationItem item = statusBarNotificationToItem(sbn);
-                        notificationDBManager.insert(item);
-                    }
-
-                    Intent i = new Intent("com.noverish.cashbook.notification.NOTIFICATION_LISTENER_EXAMPLE");
-                    i.putExtra("command", intent.getIntExtra("command", 0));
-                    sendBroadcast(i);
-                }
-            }*/
         }
     }
 
@@ -239,85 +194,5 @@ public class NotificationsReadService extends NotificationListenerService {
                 Toast.makeText(context, "NotificationsReadService does not work!", Toast.LENGTH_LONG).show();
             }
         }
-
-
-        /*
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(true) {
-
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ie) {
-                        ie.printStackTrace();
-                    }
-
-                    Log.e("asdf","ffff");
-
-                    try {
-                        instance.getActiveNotifications();
-                    } catch (Exception ex) {
-                        Log.e("checkNotificationAccess", "getActiveNotifications is null!");
-
-                    PendingIntent intent = PendingIntent.getActivity(this, 0,
-                            new Intent(context.getApplicationContext(), MainActivity.class),
-                            PendingIntent.FLAG_UPDATE_CURRENT);
-
-                        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-                        Notification noti = new NotificationCompat.Builder(context.getApplicationContext())
-                                .setContentTitle("title")
-                                .setContentText("text")
-                                .setSmallIcon(R.mipmap.ic_launcher)
-                                .setTicker("ticker")
-                                        //.setContentIntent(intent)
-                                .setAutoCancel(true)
-                                .build();
-
-                        manager.notify(1, noti);
-
-
-                    Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
-
-                    }
-                }
-            }
-        });
-
-        thread.start();*/
     }
-
-
-
-    /*
-    private NotificationItem statusBarNotificationToItem(StatusBarNotification sbn) {
-        AccountDBManager accountDBManager = AccountDBManager.getAccountManager(getApplicationContext());
-        NotificationItem item = null;
-
-        String text = (String) sbn.getNotification().extras.get("android.text");
-
-        if(text != null) {
-            String[] strings = text.split("/");
-
-            long date = sbn.getPostTime();
-            String statement = text.substring(1, 3);
-            long amount = Long.parseLong(strings[0].replaceAll("[^\\d]+", ""));
-            String content = strings[1];
-
-            String accountName = accountDBManager.getFirstAccountNameOfBank(accountDBManager.getBankID("하나")).get(0);
-            int accountID = accountDBManager.getAccountID("하나", accountName);
-
-            long balance = Long.parseLong(strings[3].replaceAll("[^\\d]+", ""));
-
-            if(content.equals(""))
-                statement = "이체";
-
-            item = new NotificationItem(statement, date, amount, content, accountID, balance, statusBarNotificationToString(sbn));
-        }
-
-        return item;
-    }*/
 }

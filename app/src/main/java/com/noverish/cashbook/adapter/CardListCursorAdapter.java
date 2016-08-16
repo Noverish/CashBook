@@ -30,11 +30,5 @@ public class CardListCursorAdapter extends CursorAdapter {
 
         TextView account = (TextView) view.findViewById(R.id.card_item_account);
         TextView card = (TextView) view.findViewById(R.id.card_item_card);
-/*
-        int accountID = cursor.getInt(cursor.getColumnIndexOrThrow(AccountDBManager.ACCOUNT_ID_COLUMN));
-        String name = cursor.getString(cursor.getColumnIndexOrThrow(AccountDBManager.NAME_COLUMN));
-
-        account.setText(manager.getAccountName(accountID));
-        card.setText(name);*/
     }
 }

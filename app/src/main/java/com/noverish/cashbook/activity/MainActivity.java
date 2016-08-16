@@ -51,12 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         currentPropertyView = (CurrentPropertyView) findViewById(R.id.main_activity_current_property);
         moneyUsageListView = (MoneyUsageListView) findViewById(R.id.main_activity_money_usage_list);
 
-        /*Intent intent = new Intent(this, NotificationsReadService.class);
-        startService(intent);*/
-
         NotificationsReadService.checkNotificationAccess(this);
-
-        Log.e("asdf","Asdf");
     }
 
     private void init() {
@@ -67,21 +62,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
                 Intent intent = new Intent(getApplicationContext(), CashBookAddActivity.class);
                 startActivityForResult(intent, REQUEST_CODE_MONEY_USAGE_ADD);
             }
         });
-
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);*/
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
