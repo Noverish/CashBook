@@ -114,7 +114,7 @@ public class CashBookAddActivity extends AppCompatActivity {
                 }
             });
         } else {
-            setData(new MoneyUsageItem(Calendar.getInstance().getTimeInMillis(), MoneyUsageItem.EXPENDITURE, 0,"","",-AccountDBManager.DEFAULT_ACCOUNT_ID, CategoryDBManager.DEFAULT_CATEOGRY_ID, ""));
+            setData(new MoneyUsageItem(Calendar.getInstance().getTimeInMillis(), MoneyUsageItem.EXPENDITURE, 0,"","",-AccountDBManager.DEFAULT_ACCOUNT_ID, CategoryDBManager.DEFAULT_CATEOGRY_ID, "", 0, ""));
 
             saveButton.setText(getResources().getString(R.string.add));
             saveButton.setOnClickListener(new saveOnClickListener(true));
@@ -213,7 +213,7 @@ public class CashBookAddActivity extends AppCompatActivity {
 
             String usageMemo = memo.getText().toString();
 
-            MoneyUsageItem moneyUsageItem = new MoneyUsageItem(date, classification, amount, usageContent, usagePlace, accountId, categoryId, usageMemo);
+            MoneyUsageItem moneyUsageItem = new MoneyUsageItem(date, classification, amount, usageContent, usagePlace, accountId, categoryId, usageMemo, 0, "");
 
             manager.insert(moneyUsageItem, changeBalance);
             ContentToCategoryDatabase.getContentToCategoryDatabase(context).putContentCategory(usageContent, categoryId);
@@ -258,7 +258,7 @@ public class CashBookAddActivity extends AppCompatActivity {
             else
                 categoryId = categorySelectView.getNowCategoryID();
 
-            MoneyUsageItem moneyUsageItem = new MoneyUsageItem(date, classification, amount, usageContent, usagePlace, accountId, categoryId, usageMemo);
+            MoneyUsageItem moneyUsageItem = new MoneyUsageItem(date, classification, amount, usageContent, usagePlace, accountId, categoryId, usageMemo, 0, "");
 
             manager.modify(id, moneyUsageItem, changeBalance);
             ContentToCategoryDatabase.getContentToCategoryDatabase(context).putContentCategory(usageContent, categoryId);

@@ -157,7 +157,7 @@ public class NotificationsReadService extends NotificationListenerService {
                 content = "ATM 출금";
             }
 
-            MoneyUsageItem item = new MoneyUsageItem(date, classification, amount, content, content, accountID, categoryID, "");
+            MoneyUsageItem item = new MoneyUsageItem(date, classification, amount, content, content, accountID, categoryID, "", 0, "");
 
             cashBookDBManager.insert(item, true);
 

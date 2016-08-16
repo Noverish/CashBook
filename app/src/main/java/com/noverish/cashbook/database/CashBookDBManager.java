@@ -27,6 +27,8 @@ public class CashBookDBManager {
     public static final String ACCOUNT_ID_COLUMN = "accountId";
     public static final String CATEGORY_ID_COLUMN = "categoryId";
     public static final String MEMO_COLUMN = "memo";
+    public static final String FEE_COLUMN = "fee";
+    public static final String GEOCODE_COLUMN = "geocode";
 
     private Context context = null;
     private final String TAG = this.getClass().getSimpleName();
@@ -70,9 +72,7 @@ public class CashBookDBManager {
 
         Log.e(TAG, "insert " + item.toString());
 
-        int retur =  (int) database.insert(DATABASE_TABLE_NAME, null, recordValues);
-
-        return retur;
+        return (int) database.insert(DATABASE_TABLE_NAME, null, recordValues);
     }
 
     public void modify(int id, MoneyUsageItem changeItem, boolean changeBalance) {
@@ -199,8 +199,10 @@ public class CashBookDBManager {
         int accountId = cursor.getInt(cursor.getColumnIndexOrThrow(ACCOUNT_ID_COLUMN));
         int categoryId = cursor.getInt(cursor.getColumnIndexOrThrow(CATEGORY_ID_COLUMN));
         String memo = cursor.getString(cursor.getColumnIndexOrThrow(MEMO_COLUMN));
+        int fee = cursor.getInt(cursor.getColumnIndexOrThrow(FEE_COLUMN));
+        String geocode = cursor.getString(cursor.getColumnIndexOrThrow(GEOCODE_COLUMN));
 
-        return new MoneyUsageItem(date, classification, amount, content, place, accountId, categoryId, memo);
+        return new MoneyUsageItem(date, classification, amount, content, place, accountId, categoryId, memo, fee, geocode);
     }
 
 
@@ -299,6 +301,8 @@ public class CashBookDBManager {
         recordValues.put(ACCOUNT_ID_COLUMN, item.getAccountId());
         recordValues.put(CATEGORY_ID_COLUMN, item.getCategoryIdOrToAccountID());
         recordValues.put(MEMO_COLUMN, item.getMemo());
+        recordValues.put(FEE_COLUMN, item.getTransferFee());
+        recordValues.put(GEOCODE_COLUMN, item.getGeoCode());
 
         return recordValues;
     }
@@ -347,8 +351,10 @@ public class CashBookDBManager {
             int accountId = cursor.getInt(cursor.getColumnIndexOrThrow(ACCOUNT_ID_COLUMN));
             int categoryId = cursor.getInt(cursor.getColumnIndexOrThrow(CATEGORY_ID_COLUMN));
             String memo = cursor.getString(cursor.getColumnIndexOrThrow(MEMO_COLUMN));
+            int fee = cursor.getInt(cursor.getColumnIndexOrThrow(FEE_COLUMN));
+            String geocode = cursor.getString(cursor.getColumnIndexOrThrow(GEOCODE_COLUMN));
 
-            MoneyUsageItem item = new MoneyUsageItem(date, classification, amount, content, place, accountId, categoryId, memo);
+            MoneyUsageItem item = new MoneyUsageItem(date, classification, amount, content, place, accountId, categoryId, memo, fee, geocode);
             Log.e(TAG,"ID = " + id + ", " + item.toString());
         }
 

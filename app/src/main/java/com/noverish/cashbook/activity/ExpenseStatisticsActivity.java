@@ -54,7 +54,7 @@ public class ExpenseStatisticsActivity extends AppCompatActivity {
                     MoneyUsageItem.EXPENDITURE,
                     totalAmount.get(bigCategoryId),
                     categoryDBManager.getBigCategoryNameById(MoneyUsageItem.EXPENDITURE, bigCategoryId),
-                    "",1,1,"");
+                    "",1,1,"", 0, "");
             MoneyUsageView view = new MoneyUsageView(this, bigCategoryId, item);
             Drawable drawable = IconManager.getIconManager(this).getDrawable(categoryDBManager.getBigCategoryById(MoneyUsageItem.EXPENDITURE, bigCategoryId).icon);
             view.setIcon(drawable);
