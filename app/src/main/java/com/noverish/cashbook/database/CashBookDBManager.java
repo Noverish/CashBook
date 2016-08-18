@@ -58,7 +58,9 @@ public class CashBookDBManager {
                 PLACE_COLUMN + " text, " +
                 ACCOUNT_ID_COLUMN + " int, " +
                 CATEGORY_ID_COLUMN + " int, " +
-                MEMO_COLUMN + " text);");
+                MEMO_COLUMN + " text, " +
+                FEE_COLUMN + " int, " +
+                GEOCODE_COLUMN + " text);");
 
         //printAllDatabase();
     }
