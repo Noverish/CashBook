@@ -21,9 +21,11 @@ public class MoneyUsageItem {
     private int accountId;
     private int categoryIdOrToAccountID;
     private String memo;
+    private int transferFee;
+    private String geoCode;
 
 
-    public MoneyUsageItem(long date, int classification, long amount, String content, String place, int accountId, int categoryId, String memo) {
+    public MoneyUsageItem(long date, int classification, long amount, String content, String place, int accountId, int categoryId, String memo, int transferFee, String geoCode) {
         this.date = date;
         this.classification = classification;
         this.amount = amount;
@@ -32,6 +34,8 @@ public class MoneyUsageItem {
         this.accountId = accountId;
         this.categoryIdOrToAccountID = categoryId;
         this.memo = memo;
+        this.transferFee = transferFee;
+        this.geoCode = geoCode;
     }
 
     public void setIcon(Drawable icon) {
@@ -70,6 +74,13 @@ public class MoneyUsageItem {
         this.memo = memo;
     }
 
+    public void setTransferFee(int transferFee) {
+        this.transferFee = transferFee;
+    }
+
+    public void setGeoCode(String geoCode) {
+        this.geoCode = geoCode;
+    }
 
     public Drawable getIcon() {
         return icon;
@@ -107,11 +118,18 @@ public class MoneyUsageItem {
         return memo;
     }
 
+    public int getTransferFee() {
+        return transferFee;
+    }
+
+    public String getGeoCode() {
+        return geoCode;
+    }
+
 
     @Override
     public String toString() {
         return "MoneyUsageItem{" +
-                "icon=" + icon +
                 ", date=" + date +
                 ", classification=" + classification +
                 ", amount=" + amount +
@@ -120,6 +138,8 @@ public class MoneyUsageItem {
                 ", accountId=" + accountId +
                 ", categoryIdOrToAccountID=" + categoryIdOrToAccountID +
                 ", memo='" + memo + '\'' +
+                ", transferFee=" + transferFee +
+                ", geoCode='" + geoCode + '\'' +
                 '}';
     }
 

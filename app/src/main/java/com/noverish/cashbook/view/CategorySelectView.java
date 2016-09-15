@@ -281,36 +281,4 @@ public class CategorySelectView extends LinearLayout {
         LinearLayout bigCategoryLayout1, bigCategoryLayout2;
         RelativeLayout smallCategoryLayoutSet;
     }
-
-
-
-     /*private void fillButtonsTwoLines(ArrayList<String> list, LinearLayout layout, int fontSize, OnClickListener onClickListener) {
-        LayoutParams params = new LayoutParams(
-                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1);
-
-        LinearLayout nowLinearLayout = new LinearLayout(context);;
-
-        for(int i = 0;i<list.size();i++) {
-            if(i % 2 == 0) {
-                nowLinearLayout = new LinearLayout(context);
-                nowLinearLayout.setLayoutParams(params);
-                nowLinearLayout.setOrientation(HORIZONTAL);
-                nowLinearLayout.setBackgroundColor(Color.TRANSPARENT);
-
-                layout.addView(nowLinearLayout);
-            }
-
-            Button button = new Button(context);
-            button.setLayoutParams(params);
-            button.setTextSize(fontSize);
-            button.setText(list.get(i));
-            button.setPadding(10, 10, 10, 10);
-            button.setMinEms(0);
-            button.setMinWidth(0);
-            button.setMinimumWidth(0);
-            button.setOnClickListener(onClickListener);
-
-            nowLinearLayout.addView(button);
-        }
-    }*/
 }

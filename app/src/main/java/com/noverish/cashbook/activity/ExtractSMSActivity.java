@@ -117,7 +117,7 @@ public class ExtractSMSActivity extends AppCompatActivity implements View.OnClic
                     categoryId = CategoryDBManager.DEFAULT_CATEOGRY_ID;
                 }
 
-                return new MoneyUsageItem(date, classification, amount, content, content, accountID, categoryId, "");
+                return new MoneyUsageItem(date, classification, amount, content, content, accountID, categoryId, "", 0, "");
             } catch (Exception ex) {
                 Log.e(TAG,body);
                 ex.printStackTrace();

@@ -19,16 +19,9 @@ import com.noverish.cashbook.database.AccountDBManager;
 import com.noverish.cashbook.database.CashBookDBManager;
 import com.noverish.cashbook.database.CategoryDBManager;
 import com.noverish.cashbook.database.ContentToCategoryDatabase;
-import com.noverish.cashbook.other.MoneyUsageItem;
 import com.noverish.cashbook.other.NotificationsReadService;
 import com.noverish.cashbook.view.CurrentPropertyView;
 import com.noverish.cashbook.view.MoneyUsageListView;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private CashBookDBManager cashBookManager;
@@ -58,12 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         currentPropertyView = (CurrentPropertyView) findViewById(R.id.main_activity_current_property);
         moneyUsageListView = (MoneyUsageListView) findViewById(R.id.main_activity_money_usage_list);
 
-        /*Intent intent = new Intent(this, NotificationsReadService.class);
-        startService(intent);*/
-
         NotificationsReadService.checkNotificationAccess(this);
-
-        Log.e("asdf","Asdf");
     }
 
     private void init() {
@@ -74,21 +62,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
                 Intent intent = new Intent(getApplicationContext(), CashBookAddActivity.class);
                 startActivityForResult(intent, REQUEST_CODE_MONEY_USAGE_ADD);
             }
         });
-
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);*/
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -168,54 +145,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
-    private void asdf() {
-        String data = "";
-        InputStream inputStream = getResources().openRawResource(R.raw.text);
-
-        try {
-            BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-            StringBuilder total = new StringBuilder();
-            String line;
-            while ((line = r.readLine()) != null) {
-                total.append(line);
-                total.append("\n");
-            }
-
-            data = total.toString();
-
-        } catch (IOException ex) {
-
-        }
-
-        String[] tmps = data.split("\n");
-
-        for(String tmp : tmps) {
-
-            String[] items = tmp.split("\t");
-
-            Calendar calendar = Calendar.getInstance();
-
-            String[] date = items[0].split("-");
-            String[] time = items[1].split(":");
-            calendar.set(Integer.parseInt(date[0]), Integer.parseInt(date[1]) - 1, Integer.parseInt(date[2]), Integer.parseInt(time[0]), Integer.parseInt(time[1]), Integer.parseInt(time[2]));
-
-            long dateLong = calendar.getTimeInMillis();
-            int classification = Integer.parseInt(items[2]);
-            String content = items[3];
-            int amount = Integer.parseInt(items[4]);
-            int account = Integer.parseInt(items[5]);
-            int category = Integer.parseInt(items[6]);
-
-            MoneyUsageItem moneyUsageItem = new MoneyUsageItem(dateLong, classification, amount, content, content, account, category, "");
-
-            Log.e(TAG,moneyUsageItem + "");
-
-            //cashBookManager.insert(moneyUsageItem, false);
-
-        }
-
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {

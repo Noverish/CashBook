@@ -27,6 +27,8 @@ public class CashBookDBManager {
     public static final String ACCOUNT_ID_COLUMN = "accountId";
     public static final String CATEGORY_ID_COLUMN = "categoryId";
     public static final String MEMO_COLUMN = "memo";
+    public static final String FEE_COLUMN = "fee";
+    public static final String GEOCODE_COLUMN = "geocode";
 
     private Context context = null;
     private final String TAG = this.getClass().getSimpleName();
@@ -56,10 +58,11 @@ public class CashBookDBManager {
                 PLACE_COLUMN + " text, " +
                 ACCOUNT_ID_COLUMN + " int, " +
                 CATEGORY_ID_COLUMN + " int, " +
-                MEMO_COLUMN + " text);");
+                MEMO_COLUMN + " text, " +
+                FEE_COLUMN + " int, " +
+                GEOCODE_COLUMN + " text);");
 
         //printAllDatabase();
-
     }
 
     public int insert(MoneyUsageItem item, boolean changeBalance) {
@@ -70,15 +73,14 @@ public class CashBookDBManager {
 
         Log.e(TAG, "insert " + item.toString());
 
-        int retur =  (int) database.insert(DATABASE_TABLE_NAME, null, recordValues);
-
-        return retur;
+        return (int) database.insert(DATABASE_TABLE_NAME, null, recordValues);
     }
 
     public void modify(int id, MoneyUsageItem changeItem, boolean changeBalance) {
         if(changeBalance) {
             MoneyUsageItem item = getItem(id);
             item.setAmount(-item.getAmount());
+            item.setTransferFee(-item.getTransferFee());
             realizeMoneyUsageItem(item);
             realizeMoneyUsageItem(changeItem);
         }
@@ -92,6 +94,7 @@ public class CashBookDBManager {
         if(changeBalance) {
             MoneyUsageItem item = getItem(id);
             item.setAmount(-item.getAmount());
+            item.setTransferFee(-item.getTransferFee());
             realizeMoneyUsageItem(item);
         }
 
@@ -107,6 +110,7 @@ public class CashBookDBManager {
         if(item.getClassification() == MoneyUsageItem.TRANSFER) {
             int fromAccountID, toAccountID = item.getCategoryIdOrToAccountID();
             long amount = item.getAmount();
+            int fee = item.getTransferFee();
 
             if(item.getAccountId() < 0)
                 fromAccountID = -item.getAccountId();
@@ -115,10 +119,11 @@ public class CashBookDBManager {
                 fromAccountID = accountDBManager.getAccountID(tmp[0], tmp[1]);
             }
 
+            accountDBManager.addBalance(fromAccountID, -fee);
             accountDBManager.addBalance(fromAccountID, -amount);
             accountDBManager.addBalance(toAccountID, amount);
 
-            Log.e(TAG, "FromAccountID is " + fromAccountID + ", amount is " + -amount);
+            Log.e(TAG, "FromAccountID is " + fromAccountID + ", amount is " + -amount + ", fee is " + fee);
             Log.e(TAG, "ToAccountID is " + toAccountID + ", amount is " + amount);
         } else if(item.getClassification() == MoneyUsageItem.EXPENDITURE) {
             int accountID;
@@ -184,7 +189,7 @@ public class CashBookDBManager {
 
         if(cursor.getCount() == 0) {
             cursor.close();
-            Log.e("getItem","There is no " + id + "in CashBookDatabase!");
+            Log.e("getItem","There is no " + id + " in CashBookDatabase!");
             printAllDatabase();
             return null;
         }
@@ -199,8 +204,10 @@ public class CashBookDBManager {
         int accountId = cursor.getInt(cursor.getColumnIndexOrThrow(ACCOUNT_ID_COLUMN));
         int categoryId = cursor.getInt(cursor.getColumnIndexOrThrow(CATEGORY_ID_COLUMN));
         String memo = cursor.getString(cursor.getColumnIndexOrThrow(MEMO_COLUMN));
+        int fee = cursor.getInt(cursor.getColumnIndexOrThrow(FEE_COLUMN));
+        String geocode = cursor.getString(cursor.getColumnIndexOrThrow(GEOCODE_COLUMN));
 
-        return new MoneyUsageItem(date, classification, amount, content, place, accountId, categoryId, memo);
+        return new MoneyUsageItem(date, classification, amount, content, place, accountId, categoryId, memo, fee, geocode);
     }
 
 
@@ -299,6 +306,8 @@ public class CashBookDBManager {
         recordValues.put(ACCOUNT_ID_COLUMN, item.getAccountId());
         recordValues.put(CATEGORY_ID_COLUMN, item.getCategoryIdOrToAccountID());
         recordValues.put(MEMO_COLUMN, item.getMemo());
+        recordValues.put(FEE_COLUMN, item.getTransferFee());
+        recordValues.put(GEOCODE_COLUMN, item.getGeoCode());
 
         return recordValues;
     }
@@ -347,8 +356,10 @@ public class CashBookDBManager {
             int accountId = cursor.getInt(cursor.getColumnIndexOrThrow(ACCOUNT_ID_COLUMN));
             int categoryId = cursor.getInt(cursor.getColumnIndexOrThrow(CATEGORY_ID_COLUMN));
             String memo = cursor.getString(cursor.getColumnIndexOrThrow(MEMO_COLUMN));
+            int fee = cursor.getInt(cursor.getColumnIndexOrThrow(FEE_COLUMN));
+            String geocode = cursor.getString(cursor.getColumnIndexOrThrow(GEOCODE_COLUMN));
 
-            MoneyUsageItem item = new MoneyUsageItem(date, classification, amount, content, place, accountId, categoryId, memo);
+            MoneyUsageItem item = new MoneyUsageItem(date, classification, amount, content, place, accountId, categoryId, memo, fee, geocode);
             Log.e(TAG,"ID = " + id + ", " + item.toString());
         }
 
@@ -370,135 +381,5 @@ public class CashBookDBManager {
                 }
             }
         }
-    }
-
-    private void comment() {
-        /*public MoneyUsageItem execute(int id) {
-        Log.e("CashBookDBManager","execute " + id + " database");
-
-        String SQL = "select date, classification, amount, content, place, bigCategory, smallCategory "
-                + " from " + DATABASE_ACCOUNT_TABLE_NAME
-                + " where _id = ?";
-        String[] args = {String.valueOf(id)};
-
-        Cursor cursor = database.rawQuery(SQL, args);
-
-        cursor.moveToNext();
-
-        Calendar date = new GregorianCalendar();
-        date.setTimeInMillis(cursor.getInt(0));
-        int classification = cursor.getInt(1);
-        int amount = cursor.getInt(2);
-        String content = cursor.getString(3);
-        String place = cursor.getString(4);
-        String bigCategroy = cursor.getString(5);
-        String smallCategory = cursor.getString(6);
-
-        cursor.close();
-
-        return new MoneyUsageItem(id, date, classification, amount, content, place, bigCategroy, smallCategory);
-
-    }*/
-
-    /*public void insertRecord(MoneyUsageItem item) {
-        database.execSQL("insertSmallCategory into" + DATABASE_ACCOUNT_TABLE_NAME +
-                "(date, classification, amount, content, place, bigCategory, smallCategory) values (" +
-                item.getDate().getTimeInMillis() + ", " +
-                item.getClassification() + ", " +
-                item.getAmount() + ", " +
-                "'" + item.getContent() + "', " +
-                "'" + item.getPlace() + "', " +
-                "'" + item.getCategoryIdOrToAccountID() + "', " +
-                "'" + item.getSmallCategoryId() + "');");
-    }
-
-    public Cursor query(String[] columns, String selection, String[] selectionArgs,
-                        String groupBy, String having, String orderBy) {
-        return database.query(DATABASE_ACCOUNT_TABLE_NAME,
-                columns, selection, selectionArgs, groupBy, having, orderBy);
-    }
-
-
-
-
-    private boolean openDatabase() {
-        helper = new CashBookDBHelper(this);
-        database = helper.getWritableDatabase();
-
-        return true;
-    }
-
-    private void executeRawQuery() {
-        Cursor c1 = database.rawQuery("select count(*) as Total from " + DATABASE_ACCOUNT_TABLE_NAME, null);
-
-        c1.moveToNext();
-        c1.close();
-    }
-
-    private void executeRawQueryParam() {
-        String SQL = "select content "
-                + " from " + DATABASE_ACCOUNT_TABLE_NAME
-                + " where classification > ?";
-        String[] args = {"0"};
-
-        Cursor c1 = database.rawQuery(SQL, args);
-        int recordCount = c1.getCount();
-
-        for(int i = 0; i < recordCount; i++) {
-            c1.moveToNext();
-            String content = c1.getString(0);
-
-            Log.e("asdf", content);
-        }
-
-        c1.close();
-    }*/
-
-/*
-    package com.noverish.cashbook.Other;
-
-    public class CashBookDBHelper {extends SQLiteOpenHelper
-
-    {
-
-    public CashBookDBHelper(Context context) {
-        super(context, CashBookDBManager.DATABASE_NAME, null, CashBookDBManager.DATABASE_VERSION);
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        try {
-            String DROP_SQL = "drop table if exists " + CashBookDBManager.DATABASE_ACCOUNT_TABLE_NAME;
-            db.execSQL(DROP_SQL);
-        } catch (Exception ex) {
-            Log.e("CashBookDBHelper","Exception in DROP_SQL");
-        }
-
-        try {
-            String CREATE_SQL = "create table" + CashBookDBManager.DATABASE_ACCOUNT_TABLE_NAME + "(" +
-                    " _id integer PRIMARY KEY autoincrement, " +
-                    "date integer, " +
-                    "classification integer, " +
-                    "amount integer, " +
-                    "content text, " +
-                    "place text, " +
-                    "bigCategory text, " +
-                    "smallCategory text);";
-            db.execSQL(CREATE_SQL);
-        } catch (Exception ex) {
-            Log.e("CashBookDBHelper","Exception in CREATE_SQL");
-        }
-    }
-
-    public void onOpen(SQLiteDatabase db) {
-        Log.e("CashBookDBHelper","opened database [" + CashBookDBManager.DATABASE_NAME + "].");
-    }
-
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w("CashBookDBHelper", "Upgrading database from version" + oldVersion + " to " + newVersion)
-    }
-    }
-
-*/
     }
 }

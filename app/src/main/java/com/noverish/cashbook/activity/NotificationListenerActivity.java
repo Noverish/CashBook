@@ -57,34 +57,4 @@ public class NotificationListenerActivity extends Activity {
             txtView.setText(temp);
         }
     }
-
-    /*
-    public void buttonClicked(View v){
-        if(v.getId() == R.id.btnListNotify) {
-            Intent i = new Intent("com.noverish.cashbook.notification.NOTIFICATION_LISTENER_SERVICE_EXAMPLE");
-            i.putExtra("command", REQUEST_CODE_NOTIFICATION_LIST);
-            sendBroadcast(i);
-        }
-    }
-
-    public void getButtonClicked(View v) {
-        if(v.getId() == R.id.get_notification) {
-            Intent i = new Intent("com.noverish.cashbook.notification.NOTIFICATION_LISTENER_SERVICE_EXAMPLE");
-            i.putExtra("command", REQUEST_GET_NOTIFICATION_CODE);
-            sendBroadcast(i);
-        }
-    }
-
-    class NotificationReceiver extends BroadcastReceiver{
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if(intent.getIntExtra("command",0) == REQUEST_CODE_NOTIFICATION_LIST) {
-                String temp = intent.getStringExtra("notification_event");
-                txtView.setText(temp);
-            } else if(intent.getIntExtra("command",0) == REQUEST_GET_NOTIFICATION_CODE) {
-                Toast.makeText(NotificationListenerActivity.this, "ㅁㄴㅇㄹ", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }*/
-
 }
