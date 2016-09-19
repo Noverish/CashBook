@@ -30,12 +30,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/money_usage_list_view_current_date"
+                android:textColor="@color/pure_white"
                 android:background="@color/transparent"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/money_usage_list_view_year"
                 android:textSize="@dimen/money_usage_list_view_current_date"
+                android:textColor="@color/pure_white"
                 android:background="@color/transparent"/>
 
             <TextView
@@ -43,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:text="&#160;"
                 android:textSize="@dimen/money_usage_list_view_current_date"
+                android:textColor="@color/pure_white"
                 android:background="@color/transparent"/>
 
             <TextView
@@ -50,12 +53,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/money_usage_list_view_current_date"
+                android:textColor="@color/pure_white"
                 android:background="@color/transparent"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/money_usage_list_view_month"
                 android:textSize="@dimen/money_usage_list_view_current_date"
+                android:textColor="@color/pure_white"
                 android:background="@color/transparent"/>
         </LinearLayout>
 

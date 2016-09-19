@@ -14,9 +14,10 @@
     <color name="not_focus">#848484</color>
     <color name="semi_focus">#d6d6d6</color>
     <color name="point_color">#2196f3</color>
+    <color name="min_color">#00B0F0</color>
 
 
-    <color name="main_color">#2196f3</color>
+    <color name="main_color">@color/min_color</color>
 
 
     <color name="sub_color_1">#DB8E8F</color>
