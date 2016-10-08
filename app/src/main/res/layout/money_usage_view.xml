@@ -11,8 +11,7 @@
         android:layout_width="@dimen/money_usage_item_icon_size"
         android:layout_height="@dimen/money_usage_item_icon_size"
         android:layout_gravity="center_vertical"
-        android:layout_margin="@dimen/money_usage_item_icon_margin"
-        android:background="@drawable/icon_appliance"/>
+        android:layout_margin="@dimen/money_usage_item_icon_margin"/>
 
     <TextView
         android:layout_width="@dimen/money_usage_item_padding"
