@@ -43,8 +43,9 @@
 
     <string name="account_add_account">통장명</string>
     <string name="account_add_bank">금융기관</string>
-    <string name="account_add_amount">시작금액</string>
+    <string name="account_add_start_amount">시작금액</string>
     <string name="account_add_now_amount">현재금액</string>
+    <string name="account_add_parsing_amount">문자에서 금액 불러오기</string>
     <string name="account_add_empty_account_name">통장명을 입력해 주세요</string>
     <string name="account_add_already_exist_account">이미 존재하는 통장입니다</string>
     <string name="account_add_saved">저장되었습니다</string>

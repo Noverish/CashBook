@@ -55,6 +55,19 @@
                 android:id="@+id/account_add_amount"
                 android:inputType="number"/>
         </TableRow>
+
+        <TableRow>
+            <Button
+                android:id="@+id/account_add_parsing_amount"
+                android:text="@string/account_add_parsing_amount"
+                android:gravity="center"
+                android:layout_height="@dimen/record_table_row_height"
+                android:layout_width="@dimen/record_table_classification_button_width"
+                android:paddingLeft="@dimen/record_table_classification_label_side_padding"
+                android:paddingRight="@dimen/record_table_classification_label_side_padding"
+                android:textSize="@dimen/record_table_classification_label_text_size"
+                android:layout_span="2"/>
+        </TableRow>
     </TableLayout>
 
     <Button
