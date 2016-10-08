@@ -35,6 +35,8 @@ public class IconManager {
     public static String travel = "travel";
     public static String game = "game";
 
+    public static String transfer = "transfer";
+
     private static IconManager manger;
     public static IconManager getIconManager(Context context) {
         if(manger == null)
@@ -64,6 +66,8 @@ public class IconManager {
         icons.put(transportation, ResourcesCompat.getDrawable(context.getResources(), R.drawable.icon_transportation, null));
         icons.put(exercise, ResourcesCompat.getDrawable(context.getResources(), R.drawable.icon_exercise, null));
         icons.put(travel, ResourcesCompat.getDrawable(context.getResources(), R.drawable.icon_travel, null));
+
+        icons.put(transfer, ResourcesCompat.getDrawable(context.getResources(), R.drawable.icon_transfer, null));
     }
 
     public Drawable getDrawable(String key) {

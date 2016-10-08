@@ -61,7 +61,9 @@ public class MoneyUsageView extends FrameLayout {
 
         Drawable icon = null;
         if(classification == MoneyUsageItem.EXPENDITURE)
-        icon = IconManager.getIconManager(context).getDrawable(CategoryDBManager.getCategoryManager(context).getSmallCategoryById(classification, item.getCategoryIdOrToAccountID()).icon);
+            icon = IconManager.getIconManager(context).getDrawable(CategoryDBManager.getCategoryManager(context).getSmallCategoryById(classification, item.getCategoryIdOrToAccountID()).icon);
+        else if(classification == MoneyUsageItem.TRANSFER)
+            icon = IconManager.getIconManager(context).getDrawable(IconManager.transfer);
         // Populate fields with extracted properties
 
         contentView.setText(content);
