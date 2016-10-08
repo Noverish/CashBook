@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(getApplicationContext(), CardManageActivity.class);
             startActivityForResult(intent, NULL);
         } else if(id == R.id.main_setting_category_manage) {
-
+            startActivity(new Intent(this, CategoryManageActivity.class));
         } else if(id == R.id.main_setting_notification_manage) {
             Intent intent = new Intent(getApplicationContext(), NotificationListenerActivity.class);
             startActivityForResult(intent, NULL);
