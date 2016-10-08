@@ -16,9 +16,7 @@ import android.widget.Toast;
 import com.noverish.cashbook.R;
 import com.noverish.cashbook.activity.MainActivity;
 import com.noverish.cashbook.activity.NotificationListenerActivity;
-import com.noverish.cashbook.database.AccountDBManager;
 import com.noverish.cashbook.database.CashBookDBManager;
-import com.noverish.cashbook.database.ContentToCategoryDatabase;
 
 import java.util.Set;
 
@@ -63,7 +61,13 @@ public class NotificationsReadService extends NotificationListenerService {
         String title = (String) sbn.getNotification().extras.get("android.title");
 
         if(title != null && title.equals("KEB 하나은행")) {
-            insertStatusBarToCashBookDB(sbn);
+            CashBookDBManager cashBookDBManager = CashBookDBManager.getCashBookDBManager(this);
+
+            MoneyUsageItem item = MessageProcessor.notificationToItem(this, sbn);
+
+            cashBookDBManager.insert(item, true);
+
+            makeNotification("하나카드 지출이 등록되었습니다",item.getContent() + " - " + item.getAmount() + "원", "");
         }
     }
 
@@ -88,59 +92,6 @@ public class NotificationsReadService extends NotificationListenerService {
         tmp += "\n";
 
         return tmp;
-    }
-
-    private void insertStatusBarToCashBookDB(StatusBarNotification sbn) {
-        AccountDBManager accountDBManager = AccountDBManager.getAccountManager(this);
-        ContentToCategoryDatabase contentToCategoryDatabase = ContentToCategoryDatabase.getContentToCategoryDatabase(this);
-        CashBookDBManager cashBookDBManager = CashBookDBManager.getCashBookDBManager(this);
-
-        String text = (String) sbn.getNotification().extras.get("android.text");
-
-        if(text != null) {
-            String[] strings = text.split("/");
-
-            long date = sbn.getPostTime();
-
-            int classification;
-            String statement = text.substring(1, 3);
-            if (statement.equals("출금"))
-                classification = 0;
-            else if (statement.equals("입금"))
-                classification = 1;
-            else
-                classification = 0;
-
-            long amount = Long.parseLong(strings[0].replaceAll("[^\\d]+", ""));
-
-            String content = strings[1];
-
-
-            String accountName = accountDBManager.getFirstAccountNameOfBank(accountDBManager.getBankID("하나"));
-            int accountID = -accountDBManager.getAccountID("하나", accountName);
-
-            int categoryID = contentToCategoryDatabase.getCategoryIDFromContent(content);
-
-            long balance = Long.parseLong(strings[3].replaceAll("[^\\d]+", ""));
-
-            if (content.equals("")) {
-                if(classification == 1) {
-                    categoryID = -accountID;
-
-                    accountName = accountDBManager.getFirstAccountNameOfBank(accountDBManager.getBankID("현금"));
-                    accountID = -accountDBManager.getAccountID("현금", accountName);
-                }
-
-                classification = 2;
-                content = "ATM 출금";
-            }
-
-            MoneyUsageItem item = new MoneyUsageItem(date, classification, amount, content, content, accountID, categoryID, "", 0, "");
-
-            cashBookDBManager.insert(item, true);
-
-            makeNotification("하나카드 지출이 등록되었습니다",content + " - " + amount + "원", "");
-        }
     }
 
     public void makeNotification(String title, String text, String ticker) {

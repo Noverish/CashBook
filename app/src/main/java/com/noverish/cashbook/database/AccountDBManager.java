@@ -101,9 +101,10 @@ public class AccountDBManager {
             Log.e(TAG, "load BANK_DATABASE failed");
         }
 
-        if(banks == null)
+        if(banks == null) {
             setDefaultBank();
-        printBankDatabase();
+            Toast.makeText(context, "은행 데이터가 없습니다.",Toast.LENGTH_SHORT).show();
+        }
 
 
         try {
@@ -117,9 +118,10 @@ public class AccountDBManager {
             Log.e(TAG, "load ACCOUNT_DATABASE failed");
         }
 
-        if(accounts == null)
+        if(accounts == null) {
             setDefaultAccount();
-        printAccountDatabase();
+            Toast.makeText(context, "계좌 데이터가 없습니다.",Toast.LENGTH_SHORT).show();
+        }
 
         try {
             FileInputStream fis;
@@ -132,9 +134,10 @@ public class AccountDBManager {
             Log.e(TAG, "load CARD_DATABASE failed");
         }
 
-        if(cards == null)
+        if(cards == null) {
             setDefaultCard();
-        printCardDatabase();
+            Toast.makeText(context, "카드 데이터가 없습니다.",Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void resetDatabase() {
