@@ -78,7 +78,6 @@ public class MoneyUsageView extends FrameLayout {
             amountView.setTextColor(ContextCompat.getColor(context, R.color.income));
         } else if(classification == MoneyUsageItem.TRANSFER) {
             amountView.setTextColor(ContextCompat.getColor(context, R.color.transfer));
-            imageView.setBackground(null);
         } else {
             Log.e("MoneyUsageCursorAdapter", "bindView Error");
         }
