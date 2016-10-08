@@ -26,6 +26,7 @@ public class MoneyUsageListPerMonth extends RelativeLayout {
     private HashMap<Integer, MoneyUsageListPerDay> list = new HashMap<>();
     private android.os.Handler handler = new Handler();
 
+    private LinearLayout scrollView;
     private TextView totalIncomeTextView, totalExpenseTextView;
 
     private Context context;
@@ -53,11 +54,15 @@ public class MoneyUsageListPerMonth extends RelativeLayout {
         manager = CashBookDBManager.getCashBookDBManager(contextPara);
         this.context = contextPara;
 
-        final LinearLayout scrollView = (LinearLayout) findViewById(R.id.money_usage_list_per_month_content_layout);
+        scrollView = (LinearLayout) findViewById(R.id.money_usage_list_per_month_content_layout);
         totalExpenseTextView = (TextView) findViewById(R.id.money_usage_list_per_month_total_expense);
         totalIncomeTextView = (TextView) findViewById(R.id.money_usage_list_per_month_total_income);
 
+        refresh();
+    }
 
+
+    public void refresh() {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -80,13 +85,6 @@ public class MoneyUsageListPerMonth extends RelativeLayout {
             }
         });
         thread.start();
-
-    }
-
-
-    public void refresh() {
-        for(MoneyUsageListPerDay day : list.values())
-            day.refresh();
     }
 
     public HashMap<Integer, MoneyUsageListPerDay> getList() {
