@@ -63,6 +63,7 @@ public class MoneyUsageListPerMonth extends RelativeLayout {
 
 
     public void refresh() {
+        scrollView.removeAllViews();
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
