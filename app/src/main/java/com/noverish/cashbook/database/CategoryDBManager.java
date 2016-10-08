@@ -261,9 +261,9 @@ public class CategoryDBManager {
         insertSmallCategory(MoneyUsageItem.EXPENDITURE, "의복/미용", "세탁수선비", IconManager.laundry);
         insertSmallCategory(MoneyUsageItem.EXPENDITURE, "의복/미용", "기타");
 
-        insertSmallCategory(MoneyUsageItem.EXPENDITURE, "건강/문화", "운동/레저");
+        insertSmallCategory(MoneyUsageItem.EXPENDITURE, "건강/문화", "운동/레저", IconManager.exercise);
         insertSmallCategory(MoneyUsageItem.EXPENDITURE, "건강/문화", "문화생활");
-        insertSmallCategory(MoneyUsageItem.EXPENDITURE, "건강/문화", "여행");
+        insertSmallCategory(MoneyUsageItem.EXPENDITURE, "건강/문화", "여행", IconManager.travel);
         insertSmallCategory(MoneyUsageItem.EXPENDITURE, "건강/문화", "병원비", IconManager.medical);
         insertSmallCategory(MoneyUsageItem.EXPENDITURE, "건강/문화", "기타");
 
