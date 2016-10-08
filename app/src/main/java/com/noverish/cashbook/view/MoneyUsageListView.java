@@ -74,8 +74,11 @@ public class MoneyUsageListView extends FrameLayout {
             }
         });
 
+        TextView yearTextView = (TextView) findViewById(R.id.money_usage_list_view_year);
+        yearTextView.setText(String.valueOf(year));
 
-        refresh();
+        TextView monthTextView = (TextView) findViewById(R.id.money_usage_list_view_month);
+        monthTextView.setText(String.valueOf(month));
 
     }
 
