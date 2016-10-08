@@ -84,4 +84,6 @@
     <string name="account_db_manager_already_exist_bank">이미 존재하는 은행입니다</string>
     <string name="account_db_manager_already_exist_account">이미 존재하는 계좌입니다</string>
     <string name="account_db_manager_already_exist_card">이미 존재하는 카드입니다</string>
+
+    <string name="activity_category_manage">기본값으로 재 설정</string>
 </resources>

@@ -204,7 +204,7 @@ public class CategoryDBManager {
             setDefaultIncomeSmallCategory();
     }
 
-    private void resetDatabase() {
+    public void resetDatabase() {
         context.deleteFile(EXPENSE_BIG_CATEGORY_DATABASE);
         context.deleteFile(EXPENSE_SMALL_CATEGORY_DATABASE);
         context.deleteFile(INCOME_BIG_CATEGORY_DATABASE);
