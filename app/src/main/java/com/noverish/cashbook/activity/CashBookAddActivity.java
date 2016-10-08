@@ -137,7 +137,7 @@ public class CashBookAddActivity extends AppCompatActivity {
         contentEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
+                if (!hasFocus && classification == MoneyUsageItem.EXPENDITURE) {
                     String usageContent = contentEditText.getText().toString();
 
                     int categoryId = ContentToCategoryDatabase.getContentToCategoryDatabase(context).getCategoryIDFromContent(usageContent);
