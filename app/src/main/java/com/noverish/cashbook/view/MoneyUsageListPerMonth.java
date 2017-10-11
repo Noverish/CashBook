@@ -37,22 +37,21 @@ public class MoneyUsageListPerMonth extends RelativeLayout {
 
     public MoneyUsageListPerMonth(Context context, int year, int month) {
         super(context);
-
+        this.context = context;
         this.year = year;
         this.month = month;
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month - 1, 1);
         this.maximumDayOfMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
-        init(context);
+        init();
     }
 
-    private void init(Context contextPara) {
-        LayoutInflater inflater = (LayoutInflater) contextPara.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    private void init() {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.money_usage_list_per_month, this, true);
 
-        manager = CashBookDBManager.getCashBookDBManager(contextPara);
-        this.context = contextPara;
+        manager = CashBookDBManager.getCashBookDBManager(context);
 
         scrollView = (LinearLayout) findViewById(R.id.money_usage_list_per_month_content_layout);
         totalExpenseTextView = (TextView) findViewById(R.id.money_usage_list_per_month_total_expense);

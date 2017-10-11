@@ -299,6 +299,8 @@ public class CashBookAddActivity extends AppCompatActivity {
             }
         }
 
+        if(item.getClassification() == MoneyUsageItem.TRANSFER)
+            transferToAccountSpinner.setSelectionByAccountId(item.getCategoryIdOrToAccountID());
     }
 
     private void setClassificationButton() {

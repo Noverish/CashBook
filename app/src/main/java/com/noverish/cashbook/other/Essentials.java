@@ -22,5 +22,12 @@ public class Essentials {
         return tmp;
     }
 
-
+    public static void printStackTrace() {
+        try {
+            int[] a = {1};
+            System.out.println(a[4]);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }

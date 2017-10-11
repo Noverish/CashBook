@@ -24,11 +24,14 @@ public class CashBookDBManager {
     public static final String AMOUNT_COLUMN = "amount";
     public static final String CONTENT_COLUMN = "content";
     public static final String PLACE_COLUMN = "place";
-    public static final String ACCOUNT_ID_COLUMN = "accountId";
-    public static final String CATEGORY_ID_COLUMN = "categoryId";
+    public static final String ACCOUNT_COLUMN = "account";
+    public static final String BALANCE_COLUMN = "balance";
+    public static final String CATEGORY_COLUMN = "category";
     public static final String MEMO_COLUMN = "memo";
     public static final String FEE_COLUMN = "fee";
     public static final String GEOCODE_COLUMN = "geocode";
+    public static final String ACCOUNT_ID_COLUMN = "accountId";
+    public static final String CATEGORY_ID_COLUMN = "categoryId";
 
     private Context context = null;
     private final String TAG = this.getClass().getSimpleName();
@@ -56,11 +59,15 @@ public class CashBookDBManager {
                 AMOUNT_COLUMN + " integer, " +
                 CONTENT_COLUMN + " text, " +
                 PLACE_COLUMN + " text, " +
-                ACCOUNT_ID_COLUMN + " int, " +
-                CATEGORY_ID_COLUMN + " int, " +
+                ACCOUNT_COLUMN + " text, " +
+                BALANCE_COLUMN + " integer, " +
+                CATEGORY_COLUMN + " text, " +
                 MEMO_COLUMN + " text, " +
-                FEE_COLUMN + " int, " +
-                GEOCODE_COLUMN + " text);");
+                FEE_COLUMN + " integer, " +
+                GEOCODE_COLUMN + " text, " +
+                ACCOUNT_ID_COLUMN + " integer, " +
+                CATEGORY_ID_COLUMN + " integer " +
+                ");");
 
         //printAllDatabase();
     }
@@ -303,11 +310,37 @@ public class CashBookDBManager {
         recordValues.put(AMOUNT_COLUMN, item.getAmount());
         recordValues.put(CONTENT_COLUMN, item.getContent());
         recordValues.put(PLACE_COLUMN, item.getPlace());
-        recordValues.put(ACCOUNT_ID_COLUMN, item.getAccountId());
-        recordValues.put(CATEGORY_ID_COLUMN, item.getCategoryIdOrToAccountID());
+
+        int accountId = item.getAccountId();
+        String account;
+        if(accountId < 0) {
+            String[] names = accountDBManager.getBankAccountSet(-accountId);
+            account = names[0] + "\\" + names[1];
+        } else {
+            String[] names = accountDBManager.getBankAccountCardSet(accountId);
+            account = names[0] + "\\" + names[1] + "\\" + names[2];
+        }
+        recordValues.put(ACCOUNT_COLUMN, account);
+
+        recordValues.put(BALANCE_COLUMN, 0);
+
+        int categoryId = item.getCategoryIdOrToAccountID();
+        String category;
+        if(item.getClassification() == MoneyUsageItem.TRANSFER) {
+            String[] names = accountDBManager.getBankAccountSet(categoryId);
+            category = names[0] + "\\" + names[1];
+        } else {
+            String[] names = categoryDBManager.getCategoryNameSetFromID(item.getClassification(), categoryId);
+            category = names[0] + "\\" + names[1];
+        }
+        System.out.println("moneyUsageItemToContentValues - " + category);
+        recordValues.put(CATEGORY_COLUMN, category);
+
         recordValues.put(MEMO_COLUMN, item.getMemo());
         recordValues.put(FEE_COLUMN, item.getTransferFee());
         recordValues.put(GEOCODE_COLUMN, item.getGeoCode());
+        recordValues.put(ACCOUNT_ID_COLUMN, item.getAccountId());
+        recordValues.put(CATEGORY_ID_COLUMN, item.getCategoryIdOrToAccountID());
 
         return recordValues;
     }
