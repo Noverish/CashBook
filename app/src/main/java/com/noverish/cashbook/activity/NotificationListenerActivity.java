@@ -7,9 +7,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.noverish.cashbook.NotificationItem;
 import com.noverish.cashbook.R;
+import com.noverish.cashbook.database.DatabaseClient;
 
 
 /**
@@ -34,6 +37,21 @@ public class NotificationListenerActivity extends Activity {
         IntentFilter filter = new IntentFilter();
         filter.addAction("com.noverish.cashbook.notification.NOTIFICATION_LISTENER_EXAMPLE");
         registerReceiver(nReceiver,filter);
+
+        Button nowListButton = (Button) findViewById(R.id.now_list_button);
+        Button savedListButton = (Button) findViewById(R.id.saved_list_button);
+        nowListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nowListBtnClicked();
+            }
+        });
+        savedListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                savedListBtnClicked();
+            }
+        });
     }
 
     @Override
@@ -42,19 +60,25 @@ public class NotificationListenerActivity extends Activity {
         unregisterReceiver(nReceiver);
     }
 
-    public void buttonClicked(View v){
-        if(v.getId() == R.id.btnListNotify){
-            Intent i = new Intent("LIST");
-            i.putExtra("command", REQUEST_CODE_NOTIFICATION_LIST);
-            sendBroadcast(i);
-        }
+    public void nowListBtnClicked() {
+        Intent i = new Intent("LIST");
+        i.putExtra("command", REQUEST_CODE_NOTIFICATION_LIST);
+        sendBroadcast(i);
+    }
+
+    public void savedListBtnClicked() {
+        StringBuilder builder = new StringBuilder();
+
+        for(NotificationItem item : DatabaseClient.getAll(NotificationItem.class))
+            builder.append(item.toString()).append("\n\n");
+
+        txtView.setText(builder.toString());
     }
 
     class NotificationReceiver extends BroadcastReceiver{
         @Override
         public void onReceive(Context context, Intent intent) {
-            String temp = intent.getStringExtra("notification_event") + "\nn" + txtView.getText();
-            txtView.setText(temp);
+            txtView.setText(intent.getStringExtra("notification_event"));
         }
     }
 }

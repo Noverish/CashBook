@@ -13,10 +13,11 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.noverish.cashbook.NotificationItem;
 import com.noverish.cashbook.R;
 import com.noverish.cashbook.activity.MainActivity;
 import com.noverish.cashbook.activity.NotificationListenerActivity;
-import com.noverish.cashbook.database.CashBookDBManager;
+import com.noverish.cashbook.database.DatabaseClient;
 
 import java.util.Set;
 
@@ -58,6 +59,16 @@ public class NotificationsReadService extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
+
+        NotificationItem item = new NotificationItem(sbn); // Create managed objects directly
+
+        if(item.getTitle().contains("ViRobot"))
+            return;
+
+        DatabaseClient.insert(item);
+        System.out.println("NotificationItem : " + item.toString());
+
+        /*
         String title = (String) sbn.getNotification().extras.get("android.title");
 
         if(title != null && title.equals("KEB 하나은행")) {
@@ -69,6 +80,7 @@ public class NotificationsReadService extends NotificationListenerService {
 
             makeNotification("하나카드 지출이 등록되었습니다",item.getContent() + " - " + item.getAmount() + "원", "");
         }
+        */
     }
 
     @Override
@@ -117,15 +129,14 @@ public class NotificationsReadService extends NotificationListenerService {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getIntExtra("command",0) == NotificationListenerActivity.REQUEST_CODE_NOTIFICATION_LIST) {
-                String tmp = "===== Notification List ====";
+                StringBuilder builder = new StringBuilder();
 
                 for (StatusBarNotification sbn : NotificationsReadService.this.getActiveNotifications())
-                    tmp += statusBarNotificationToString(sbn);
-                tmp += "============================";
+                    builder.append(new NotificationItem(sbn).toString()).append("\n\n");
 
                 Intent i = new Intent("com.noverish.cashbook.notification.NOTIFICATION_LISTENER_EXAMPLE");
                 i.putExtra("command", intent.getIntExtra("command", 0));
-                i.putExtra("notification_event", tmp);
+                i.putExtra("notification_event", builder.toString());
                 sendBroadcast(i);
             }
         }

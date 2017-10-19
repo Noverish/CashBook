@@ -1,8 +1,9 @@
 package com.noverish.cashbook.activity;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,14 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.noverish.cashbook.R;
 import com.noverish.cashbook.account.AccountManageActivity;
-import com.noverish.cashbook.database.AccountDBManager;
 import com.noverish.cashbook.database.CashBookDBManager;
-import com.noverish.cashbook.database.CategoryDBManager;
-import com.noverish.cashbook.database.ContentToCategoryDatabase;
 import com.noverish.cashbook.other.NotificationsReadService;
 import com.noverish.cashbook.view.CurrentPropertyView;
 import com.noverish.cashbook.view.MoneyUsageListView;
@@ -43,21 +40,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.app_bar_main);
         init();
 
+        /*
         AccountDBManager.getAccountManager(this);
         CashBookDBManager.getCashBookDBManager(this);
         CategoryDBManager.getCategoryManager(this);
         ContentToCategoryDatabase.getContentToCategoryDatabase(this);
+        */
 
         currentPropertyView = (CurrentPropertyView) findViewById(R.id.main_activity_current_property);
         moneyUsageListView = (MoneyUsageListView) findViewById(R.id.main_activity_money_usage_list);
 
-        NotificationsReadService.checkNotificationAccess(this);
+//        NotificationsReadService.checkNotificationAccess(this);
+
+        ComponentName cn = new ComponentName(this, NotificationsReadService.class);
+        String flat = Settings.Secure.getString(this.getContentResolver(), "enabled_notification_listeners");
+        final boolean enabled = flat != null && flat.contains(cn.flattenToString());
+        if(!enabled) {
+            Intent intent=new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+            startActivity(intent);
+        }
     }
 
     private void init() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivityForResult(intent, REQUEST_CODE_MONEY_USAGE_ADD);
             }
         });
+        */
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
